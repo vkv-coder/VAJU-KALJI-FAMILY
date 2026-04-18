@@ -158,7 +158,7 @@ var admin=false,pending=null,curId=null;
 var mode='all';var focusId=null; // 'all','live','focus','search'
 var focusId=null;
 var mob=window.innerWidth<=640;
-var NW=mob?110:96,NH=mob?52:46,HG=mob?18:14,VG=mob?72:64,NFS=mob?12:12;
+var NW=mob?106:92,NH=mob?50:44,HG=mob?22:18,VG=mob?74:66,NFS=mob?12:12;
 var tx=0,ty=0,sc=1,drag=false,sx=0,sy=0,stx=0,sty=0,moved=false;
 var pinch=false,pd=0,psc=1,ptx=0,pty=0,pmx=0,pmy=0;
 var npos={},coll=new Set();
@@ -316,27 +316,11 @@ function placeNodes(rootId){
     if(p.spouses&&p.spouses.length){
       var spId=p.spouses.find(function(s){return!placed.has(s)&&isVis(P[s]);});
       if(spId){
-        placed.add(spId);
-        var sp=P[spId];
-        // Husband (M) always LEFT, Wife (F) always RIGHT
-        var husbId=id,wifeId=spId;
-        if(p.sex==='F'&&sp&&sp.sex==='M'){husbId=spId;wifeId=id;}
-        spX=x+NW+HG;
-        if(husbId===id){
-          // person is husband - normal order
-          nodes.push({id:wifeId,x:spX,y:y,isSp:true});
-          nodes.push({id:id,x:x,y:y,spX:spX});
-        } else {
-          // person is wife, spouse is husband - swap positions
-          nodes.push({id:husbId,x:x,y:y,spX:spX});
-          nodes.push({id:wifeId,x:spX,y:y,isSp:true});
-        }
-      } else {
-        nodes.push({id:id,x:x,y:y,spX:spX});
+        placed.add(spId);spX=x+NW+HG;
+        nodes.push({id:spId,x:spX,y:y,isSp:true});
       }
-    } else {
-      nodes.push({id:id,x:x,y:y,spX:spX});
     }
+    nodes.push({id:id,x:x,y:y,spX:spX});
     if(!coll.has(id)){
       var kids=(p.children||[]).filter(function(c){return isVis(P[c]);});
       if(kids.length){
@@ -344,8 +328,15 @@ function placeNodes(rootId){
         var tot=lws.reduce(function(s,v){return s+v;},0);
         var totPx=tot*(NW+HG)-HG;
         var parMid=spX!==null?(x+NW/2+spX+NW/2)/2:x+NW/2;
-        var cx=parMid-totPx/2,cy=y+NH+VG;
-        kids.forEach(function(cid,i){var cw2=lws[i]*(NW+HG);place(cid,cx+(cw2-NW)/2,cy,vis);cx+=cw2;});
+        var cx=Math.max(parMid-totPx/2, x),cy=y+NH+VG; // clamp: never go left of parent x
+        kids.forEach(function(cid,i){
+          var cw2=lws[i]*(NW+HG);
+          var cp=P[cid];
+          var hasSp=cp&&cp.spouses&&cp.spouses.length&&cp.spouses.some(function(s){return isVis(P[s]);});
+          var kx=hasSp?cx:cx+(cw2-NW)/2;
+          place(cid,kx,cy,vis);
+          cx+=cw2;
+        });
       }
     }
   }
@@ -409,6 +400,16 @@ function render(rootId){
   // Nodes
   nodes.forEach(function(n){
     var p=P[n.id];if(!p)return;
+    // Visual swap: if this person is F with M spouse, swap display positions
+    var dispId=n.id,dispSpId=null;
+    if(!n.isSp&&n.spX!==null&&n.spX!==undefined){
+      var sp=P[n.id];var spNode=nodes.find(function(x){return x.isSp&&x.y===n.y&&Math.abs(x.x-n.spX)<1;});
+      if(spNode&&P[n.id]&&P[spNode.id]&&P[n.id].sex==='F'&&P[spNode.id].sex==='M'){
+        dispId=spNode.id;dispSpId=n.id; // render M at left position, F at right
+      }
+    }
+    var pid=n.isSp?n.id:dispId;
+    var p=P[pid];if(!p)return;
     var pos=npos[n.id],cls=sxc(p);
     var ghost=mode==='live'&&p.deceased; // invisible in live mode
     var div=document.createElement('div');
@@ -417,14 +418,14 @@ function render(rootId){
     var pill=document.createElement('div');
     var isShallow=(mode==='all'&&p.depth>=1&&p.depth<=7);
     pill.className='np '+cls+(p.deceased?' dead':'')+(ghost?' ghost':'')+(isShallow?' sm':'');
-    pill.dataset.id=p.id;
+    pill.dataset.id=pid;
     pill.style.cssText='width:'+NW+'px;min-height:'+(isShallow?28:NH)+'px;font-size:'+(isShallow?9:NFS)+'px';
     var cityHtml=p.city?'<span class="nc">'+p.city+'</span>':'';
     var birthHtml=p.birth?'<span class="nc">b.'+p.birth+'</span>':'';
     pill.innerHTML='<span class="nn">'+p.name+'</span>'+(isShallow?'':(p.birth?birthHtml:cityHtml));
     if(!ghost)pill.onclick=function(e){
       if(moved)return;e.stopPropagation();
-      showProfile(p.id);
+      showProfile(pid);
     };
     div.appendChild(pill);
     var kids=(p.children||[]).filter(function(c){return isVis(P[c]);});
@@ -924,7 +925,7 @@ function initView(){
     vis=vis||new Set();if(vis.has(id))return;var p=P[id];if(!p||p.depth<8)return;vis.add(id);g8placed.add(id);
     var spX=null;if(p.spouses&&p.spouses.length){var spId=p.spouses.find(function(s){return!g8placed.has(s)&&P[s]&&P[s].depth>=8;});if(spId){g8placed.add(spId);spX=x+NW+HG;g8nodes.push({id:spId,x:spX,y:y,isSp:true});}}
     g8nodes.push({id:id,x:x,y:y,spX:spX});
-    if(!coll.has(id)){var kids=(p.children||[]).filter(function(c){return P[c]&&P[c].depth>=8;});if(kids.length){var lws=kids.map(function(cc){return g8LW(cc);});var tot=lws.reduce(function(s,v){return s+v;},0);var totPx=tot*(NW+HG)-HG;var parMid=spX!=null?(x+NW/2+spX+NW/2)/2:x+NW/2;var cx3=parMid-totPx/2,cy3=y+NH+VG;kids.forEach(function(cid,i){var cw3=lws[i]*(NW+HG);g8Pl(cid,cx3+(cw3-NW)/2,cy3,new Set([].concat(Array.from(vis))));cx3+=cw3;});}}
+    if(!coll.has(id)){var kids=(p.children||[]).filter(function(c){return P[c]&&P[c].depth>=8;});if(kids.length){var lws=kids.map(function(cc){return g8LW(cc);});var tot=lws.reduce(function(s,v){return s+v;},0);var totPx=tot*(NW+HG)-HG;var parMid=spX!=null?(x+NW/2+spX+NW/2)/2:x+NW/2;var cx3=parMid-totPx/2,cy3=y+NH+VG;kids.forEach(function(cid,i){var cw3=lws[i]*(NW+HG);var cp=P[cid];var hSp=cp&&cp.spouses&&cp.spouses.length;var kx3=hSp?cx3:cx3+(cw3-NW)/2;g8Pl(cid,kx3,cy3,new Set([].concat(Array.from(vis))));cx3+=cw3;});}}
   }
   var g8total=g8starts.reduce(function(s,p){return s+g8LW(p.id);},0);
   var g8W=g8total*(NW+HG)-HG,g8StartX=-g8W/2,curX=g8StartX;
