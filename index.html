@@ -158,7 +158,7 @@ var admin=false,pending=null,curId=null;
 var mode='all';var focusId=null; // 'all','live','focus','search'
 var focusId=null;
 var mob=window.innerWidth<=640;
-var NW=mob?130:110,NH=mob?56:48,HG=mob?24:20,VG=mob?86:72,NFS=mob?12:11;
+var NW=mob?140:124,NH=mob?62:54,HG=mob?32:28,VG=mob?90:78,NFS=mob?13:13;
 var tx=0,ty=0,sc=1,drag=false,sx=0,sy=0,stx=0,sty=0,moved=false;
 var pinch=false,pd=0,psc=1,ptx=0,pty=0,pmx=0,pmy=0;
 var npos={},coll=new Set();
@@ -309,7 +309,7 @@ function placeNodes(rootId){
     if(p.spouses&&p.spouses.length){
       var spId=p.spouses.find(function(s){return!placed.has(s)&&isVis(P[s]);});
       if(spId){
-        placed.add(spId);spX=x-NW-HG-14;
+        placed.add(spId);spX=x+NW+HG;
         nodes.push({id:spId,x:spX,y:y,isSp:true});
       }
     }
@@ -376,9 +376,10 @@ function render(rootId){
   nodes.forEach(function(n){
     if(n.spX===null||n.spX===undefined)return;
     var fade=mode==='live'&&P[n.id]&&P[n.id].deceased;
-    var x1=n.x-mnX+pad,y1=n.y-mnY+pad+NH/2,x2=n.spX-mnX+pad+NW;
+    // Husband left, wife right: connect right edge of husband to left edge of wife
+    var x1=n.x-mnX+pad+NW, x2=n.spX-mnX+pad, y1=n.y-mnY+pad+NH/2;
     var ln=document.createElementNS('http://www.w3.org/2000/svg','line');
-    ln.setAttribute('x1',x2);ln.setAttribute('y1',y1);ln.setAttribute('x2',x1);ln.setAttribute('y2',y1);
+    ln.setAttribute('x1',x1);ln.setAttribute('y1',y1);ln.setAttribute('x2',x2);ln.setAttribute('y2',y1);
     ln.setAttribute('stroke',fade?'rgba(200,184,154,0.08)':'#C8B89A');ln.setAttribute('stroke-width','1.8');ln.setAttribute('stroke-dasharray','5 3');
     sv.appendChild(ln);
   });
@@ -842,7 +843,7 @@ function renderFull(rootId){
     sv2.appendChild(path);
   });
   nodes.forEach(function(n){
-    if(n.spX==null)return;var x1=n.x-mnX+pad,y1=n.y-mnY+pad+NH/2,x2=n.spX-mnX+pad+NW;
+    if(n.spX==null)return;var x1=n.x-mnX+pad+NW,x2=n.spX-mnX+pad,y1=n.y-mnY+pad+NH/2;
     var ln=document.createElementNS('http://www.w3.org/2000/svg','line');
     ln.setAttribute('x1',x2);ln.setAttribute('y1',y1);ln.setAttribute('x2',x1);ln.setAttribute('y2',y1);
     ln.setAttribute('stroke','#C8B89A');ln.setAttribute('stroke-width','1.8');ln.setAttribute('stroke-dasharray','5 3');sv2.appendChild(ln);
@@ -897,7 +898,7 @@ function initView(){
   function g8LW(id,vis){vis=vis||new Set();if(vis.has(id)||coll.has(id))return 1;vis.add(id);var p=P[id];if(!p||p.depth<8)return 1;var kids=(p.children||[]).filter(function(c){return P[c]&&P[c].depth>=8;});if(!kids.length)return 1;return kids.reduce(function(s,cc){return s+g8LW(cc,vis);},0);}
   function g8Pl(id,x,y,vis){
     vis=vis||new Set();if(vis.has(id))return;var p=P[id];if(!p||p.depth<8)return;vis.add(id);g8placed.add(id);
-    var spX=null;if(p.spouses&&p.spouses.length){var spId=p.spouses.find(function(s){return!g8placed.has(s)&&P[s]&&P[s].depth>=8;});if(spId){g8placed.add(spId);spX=x-NW-HG-14;g8nodes.push({id:spId,x:spX,y:y,isSp:true});}}
+    var spX=null;if(p.spouses&&p.spouses.length){var spId=p.spouses.find(function(s){return!g8placed.has(s)&&P[s]&&P[s].depth>=8;});if(spId){g8placed.add(spId);spX=x+NW+HG;g8nodes.push({id:spId,x:spX,y:y,isSp:true});}}
     g8nodes.push({id:id,x:x,y:y,spX:spX});
     if(!coll.has(id)){var kids=(p.children||[]).filter(function(c){return P[c]&&P[c].depth>=8;});if(kids.length){var lws=kids.map(function(cc){return g8LW(cc);});var tot=lws.reduce(function(s,v){return s+v;},0);var totPx=tot*(NW+HG)-HG;var parMid=spX!=null?(x+NW/2+spX+NW/2)/2:x+NW/2;var cx3=parMid-totPx/2,cy3=y+NH+VG;kids.forEach(function(cid,i){var cw3=lws[i]*(NW+HG);g8Pl(cid,cx3+(cw3-NW)/2,cy3,new Set([].concat(Array.from(vis))));cx3+=cw3;});}}
   }
@@ -966,7 +967,7 @@ function initView(){
   });
   g8nodes.forEach(function(n){
     if(n.spX==null)return;var x1=n.x+offX,y1=n.y+offY+NH/2,x2=n.spX+offX+NW;
-    var ln=document.createElementNS('http://www.w3.org/2000/svg','line');ln.setAttribute('x1',x2);ln.setAttribute('y1',y1);ln.setAttribute('x2',x1);ln.setAttribute('y2',y1);ln.setAttribute('stroke','#C8B89A');ln.setAttribute('stroke-width','1.8');ln.setAttribute('stroke-dasharray','5 3');sv2.appendChild(ln);
+    var ln=document.createElementNS('http://www.w3.org/2000/svg','line');ln.setAttribute('x1',x1);ln.setAttribute('y1',y1);ln.setAttribute('x2',x2);ln.setAttribute('y2',y1);ln.setAttribute('stroke','#C8B89A');ln.setAttribute('stroke-width','1.8');ln.setAttribute('stroke-dasharray','5 3');sv2.appendChild(ln);
   });
 
   // Gen8+ pills
@@ -1029,7 +1030,7 @@ var ptitle=printMode==='full'?'Vaju Kalji Family Tree ( Dhrangadhra )':'Vaju Kal
   printNodes.forEach(function(n){if(n.isSp)return;var p=printPeople[n.id];if(!p)return;(p.children||[]).filter(function(cc){return !!printPeople[cc];}).forEach(function(cid){parNode[cid]=n;});});
   var svgL='<svg style="position:absolute;top:0;left:0;overflow:visible" width="'+W+'" height="'+H+'">';
   printNodes.forEach(function(n){var par=parNode[n.id];if(!par||n.isSp)return;var cx2=n.x-mnX+pad+pNW/2,cy2=n.y-mnY+pad;var pm2=par.spX!=null?((par.x-mnX+pad+pNW/2)+(par.spX-mnX+pad+pNW/2))/2:par.x-mnX+pad+pNW/2;var pby=par.y-mnY+pad+pNH,my=pby+(cy2-pby)*0.45;svgL+='<path d="M'+pm2+' '+pby+' L'+pm2+' '+my+' L'+cx2+' '+my+' L'+cx2+' '+cy2+'" fill="none" stroke="#C8B89A" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>';});
-  printNodes.forEach(function(n){if(n.spX==null)return;var x1=n.x-mnX+pad,y1=n.y-mnY+pad+pNH/2,x2=n.spX-mnX+pad+pNW;svgL+='<line x1="'+x2+'" y1="'+y1+'" x2="'+x1+'" y2="'+y1+'" stroke="#C8B89A" stroke-width="1.2" stroke-dasharray="4 3"/>';});
+  printNodes.forEach(function(n){if(n.spX==null)return;var x1=n.x-mnX+pad+pNW,x2=n.spX-mnX+pad,y1=n.y-mnY+pad+pNH/2;svgL+='<line x1="'+x1+'" y1="'+y1+'" x2="'+x2+'"' y2="'+y1+'" stroke="#C8B89A" stroke-width="1.2" stroke-dasharray="4 3"/>';});
   svgL+='</svg>';
   var pillsH='';
   printNodes.forEach(function(n){var p=printPeople[n.id];if(!p)return;var nx2=n.x-mnX+pad,ny2=n.y-mnY+pad;var cls=p.sex==='F'?'F':p.sex==='M'?'M':'O';var sub='';if(p.birth){var by=p.birth.split(' ').pop();sub='<div class="nc">'+by+(p.city?' | '+p.city:'')+'</div>';}else if(p.city){sub='<div class="nc">'+p.city+'</div>';}pillsH+='<div style="position:absolute;left:'+nx2+'px;top:'+ny2+'px;width:'+pNW+'px"><div class="np '+cls+(p.deceased?' dead':'')+'" style="width:'+pNW+'px;min-height:'+pNH+'px"><span class="nn">'+p.name+'</span>'+sub+'</div></div>';});
