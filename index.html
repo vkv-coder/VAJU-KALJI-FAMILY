@@ -291,12 +291,19 @@ function isVis(p){
 
 function leafW(id,vis){
   vis=vis||new Set();
-  if(vis.has(id)||coll.has(id))return 1;
+  if(vis.has(id)||coll.has(id)){
+    // Even collapsed/leaf nodes need space for spouse
+    var p=P[id];
+    var hasSp=p&&p.spouses&&p.spouses.length&&isVis(P[p.spouses[0]]);
+    return hasSp?2:1;
+  }
   vis.add(id);
   var p=P[id];if(!p)return 1;
+  var hasSp=p.spouses&&p.spouses.length&&isVis(P[p.spouses[0]]);
   var kids=(p.children||[]).filter(function(c){return isVis(P[c]);});
-  if(!kids.length)return 1;
-  return kids.reduce(function(s,c){return s+leafW(c,vis);},0);
+  if(!kids.length)return hasSp?2:1;
+  var kw=kids.reduce(function(s,c){return s+leafW(c,vis);},0);
+  return Math.max(hasSp?2:1, kw);
 }
 
 function placeNodes(rootId){
@@ -309,11 +316,27 @@ function placeNodes(rootId){
     if(p.spouses&&p.spouses.length){
       var spId=p.spouses.find(function(s){return!placed.has(s)&&isVis(P[s]);});
       if(spId){
-        placed.add(spId);spX=x+NW+HG;
-        nodes.push({id:spId,x:spX,y:y,isSp:true});
+        placed.add(spId);
+        var sp=P[spId];
+        // Husband (M) always LEFT, Wife (F) always RIGHT
+        var husbId=id,wifeId=spId;
+        if(p.sex==='F'&&sp&&sp.sex==='M'){husbId=spId;wifeId=id;}
+        spX=x+NW+HG;
+        if(husbId===id){
+          // person is husband - normal order
+          nodes.push({id:wifeId,x:spX,y:y,isSp:true});
+          nodes.push({id:id,x:x,y:y,spX:spX});
+        } else {
+          // person is wife, spouse is husband - swap positions
+          nodes.push({id:husbId,x:x,y:y,spX:spX});
+          nodes.push({id:wifeId,x:spX,y:y,isSp:true});
+        }
+      } else {
+        nodes.push({id:id,x:x,y:y,spX:spX});
       }
+    } else {
+      nodes.push({id:id,x:x,y:y,spX:spX});
     }
-    nodes.push({id:id,x:x,y:y,spX:spX});
     if(!coll.has(id)){
       var kids=(p.children||[]).filter(function(c){return isVis(P[c]);});
       if(kids.length){
