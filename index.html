@@ -10,89 +10,98 @@
 :root{--B:#1A5FAD;--BL:#E3EEF8;--BD:#0B3F74;--PK:#A03365;--PL:#F5E3EE;--PD:#6E1F44;--GR:#7A7870;--GL:#F0EEE8;--RD:#C0392B;--AU:#C8A96A;--INK:#1C1B19;--MU:#8A8880;--LN:#D8D5CC;--CR:#FAF9F5}
 html,body{height:100%;overflow:hidden}
 body{font-family:'DM Sans',sans-serif;background:var(--CR);color:var(--INK);display:flex;flex-direction:column;height:100vh}
-header{background:linear-gradient(135deg,#1a3a5c 0%,#2c5f8a 100%);padding:10px 12px 7px;flex-shrink:0;position:relative}
-.h1{display:flex;align-items:center;gap:6px;margin-bottom:3px}
+header{background:linear-gradient(135deg,#1a3a5c 0%,#2c5f8a 100%);padding:8px 12px 6px;flex-shrink:0;position:relative}
+.h1{display:flex;align-items:center;gap:6px;margin-bottom:2px}
 .ht{font-family:'Playfair Display',serif;font-size:clamp(14px,3.8vw,20px);font-weight:700;color:#fff;flex:1}
 .hbs{display:flex;gap:4px;flex-wrap:wrap}
-.hb{border:none;border-radius:6px;padding:6px 9px;font-size:clamp(10px,2.4vw,12px);cursor:pointer;font-family:'DM Sans',sans-serif;white-space:nowrap;color:#fff;background:rgba(255,255,255,0.13)}
-.hb.g{background:#1a5f2e;font-size:clamp(11px,2.7vw,13px);font-weight:600}
-.hb.r{background:#8B0000;font-size:clamp(11px,2.7vw,13px);font-weight:600}
-.hb.p{background:#2c5f8a;font-size:clamp(11px,2.7vw,13px);font-weight:600}
-.nm{text-align:center;font-size:clamp(11px,2.8vw,14px);color:var(--AU);font-style:italic;font-family:'Playfair Display',serif;padding:2px 0}
-/* Kuldevi row */
-.krow{text-align:center;padding:3px 0 2px}
-.kbtn{background:rgba(255,255,255,0.13);border:1px solid rgba(255,255,255,0.25);border-radius:14px;padding:5px 14px;color:#fff;font-size:clamp(10px,2.5vw,12px);cursor:pointer;font-family:'DM Sans',sans-serif;display:inline-flex;align-items:center;gap:7px}
-/* Ancestor breadcrumb strip */
-.anc-strip{background:rgba(0,0,0,0.22);padding:4px 12px;display:flex;align-items:center;flex-wrap:wrap;gap:2px;font-size:clamp(10px,2.3vw,12px);color:rgba(255,255,255,0.7);font-family:'DM Sans',sans-serif}
-.anc-root{color:#fff;font-weight:700;white-space:nowrap;background:rgba(200,169,106,0.25);border-radius:8px;padding:1px 8px}
-.anc-sep{color:rgba(255,255,255,0.35);margin:0 2px;font-size:10px}
-.anc-name{color:var(--AU);font-weight:500;white-space:nowrap}
-.anc-label{color:rgba(255,255,255,0.45);font-size:10px;margin-right:4px}
+.hb{border:none;border-radius:6px;padding:5px 9px;font-size:clamp(10px,2.4vw,12px);cursor:pointer;font-family:'DM Sans',sans-serif;white-space:nowrap;color:#fff;background:rgba(255,255,255,0.13)}
+.hb.p{background:#2c5f8a;font-weight:600}
+.hb.doc{background:#5a3a8a;font-weight:600}
+/* Kuldevi + search row */
+.krow{display:flex;align-items:center;gap:8px;padding:3px 0 4px;flex-wrap:wrap}
+.kbtn{background:rgba(255,255,255,0.13);border:1px solid rgba(255,255,255,0.25);border-radius:14px;padding:4px 12px;color:#fff;font-size:clamp(10px,2.4vw,12px);cursor:pointer;font-family:'DM Sans',sans-serif;display:inline-flex;align-items:center;gap:6px;white-space:nowrap}
+.nm{font-size:clamp(11px,2.7vw,13px);color:var(--AU);font-style:italic;font-family:'Playfair Display',serif;padding:1px 0;text-align:center}
+/* Search in header */
+.srch{flex:1;min-width:120px;display:flex;align-items:center;gap:6px;background:rgba(255,255,255,0.15);border-radius:14px;padding:4px 10px;border:1px solid rgba(255,255,255,0.2)}
+.srch input{border:none;outline:none;background:transparent;color:#fff;font-size:clamp(11px,2.7vw,13px);flex:1;font-family:'DM Sans',sans-serif;min-width:0}
+.srch input::placeholder{color:rgba(255,255,255,0.55)}
+.srch svg{opacity:0.6;flex-shrink:0}
+/* Lineage breadcrumb trail (dynamic) */
+#tr{display:none;font-size:clamp(10px,2.4vw,12px);color:rgba(255,255,255,0.85);white-space:nowrap;overflow-x:auto;scrollbar-width:none;padding:2px 0;font-weight:500}
+#tr::-webkit-scrollbar{display:none}
+.ti{display:inline;cursor:pointer}.ti:hover{color:var(--AU)}
+.ts{color:var(--AU);margin:0 3px;font-size:10px}
+/* Roots static strip */
+.anc-strip{background:rgba(0,0,0,0.2);padding:3px 12px;font-size:clamp(9px,2.1vw,11px);color:rgba(255,255,255,0.65);display:flex;align-items:center;flex-wrap:wrap;gap:2px}
+.anc-root{color:#fff;font-weight:700;background:rgba(200,169,106,0.3);border-radius:6px;padding:1px 7px;white-space:nowrap}
+.anc-sep{color:rgba(255,255,255,0.35);margin:0 2px;font-size:9px}
+.anc-name{color:var(--AU);white-space:nowrap}
 /* Stats bar */
-.stbar{background:rgba(0,0,0,0.18);padding:3px 12px;display:flex;gap:14px;font-size:clamp(9px,2.2vw,11px);color:rgba(255,255,255,0.7)}
+.stbar{background:rgba(0,0,0,0.18);padding:2px 12px;display:flex;gap:12px;font-size:clamp(9px,2.1vw,11px);color:rgba(255,255,255,0.65)}
 .stbar span{white-space:nowrap}
+/* Print menu */
+#pmenu{display:none;position:absolute;top:38px;right:8px;background:#fff;border-radius:10px;box-shadow:0 4px 16px rgba(0,0,0,0.2);z-index:500;min-width:220px;overflow:hidden;border:1px solid #eee}
+#pmenu div{padding:11px 16px;cursor:pointer;font-size:13px;font-weight:500;color:var(--INK);border-bottom:1px solid #f0eeea;font-family:'DM Sans',sans-serif}
+#pmenu div:last-child{border-bottom:none}
+#pmenu div:hover{background:#f8f8f8}
 /* Canvas */
 #cw{flex:1;overflow:hidden;position:relative;background:var(--CR);cursor:grab;touch-action:none}
 #cw.g{cursor:grabbing}
 #mv{position:absolute;top:0;left:0;transform-origin:0 0;will-change:transform}
 #sv{position:absolute;top:0;left:0;pointer-events:none;overflow:visible;transform-origin:0 0;will-change:transform}
-.nd{position:absolute;display:flex;flex-direction:column;align-items:center;gap:3px}
-.np{border-radius:10px;border:2px solid;text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:6px 7px;line-height:1.3;box-shadow:0 2px 8px rgba(0,0,0,0.09);cursor:pointer}
+.nd{position:absolute}
+.np{border-radius:10px;border:2px solid;text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:5px 6px;line-height:1.3;box-shadow:0 2px 8px rgba(0,0,0,0.09);cursor:pointer}
 .np.M{background:var(--BL);border-color:var(--B)}
 .np.F{background:var(--PL);border-color:var(--PK)}
 .np.O{background:var(--GL);border-color:var(--GR)}
-.nn{font-weight:600;word-break:break-word}
+.nn{font-weight:600;word-break:break-word;font-size:11px}
 .np.M .nn{color:var(--BD)}.np.F .nn{color:var(--PD)}.np.O .nn{color:#3a3830}
 .np.dead .nn{color:var(--RD)!important}
 .nc{color:var(--MU);font-size:9px;margin-top:1px}
 .np.sel{box-shadow:0 0 0 3px var(--AU)!important}
-/* Search bar */
-.sb{position:absolute;bottom:14px;left:50%;transform:translateX(-50%);display:flex;align-items:center;gap:7px;background:rgba(255,255,255,0.97);border-radius:20px;padding:8px 14px;border:1px solid var(--LN);box-shadow:0 3px 14px rgba(0,0,0,0.12);z-index:40;width:calc(100% - 32px);max-width:300px;pointer-events:auto}
-.sb input{border:none;outline:none;font-size:clamp(13px,3vw,15px);flex:1;background:transparent;font-family:'DM Sans',sans-serif}
-.sb svg{flex-shrink:0;opacity:0.4}
-/* Print menu */
-#pmenu{display:none;position:absolute;top:42px;right:8px;background:#fff;border-radius:10px;box-shadow:0 4px 16px rgba(0,0,0,0.2);z-index:500;min-width:220px;overflow:hidden;border:1px solid #eee}
-#pmenu div{padding:12px 16px;cursor:pointer;font-size:13px;font-weight:500;color:var(--INK);border-bottom:1px solid #f0eeea;font-family:'DM Sans',sans-serif}
-#pmenu div:last-child{border-bottom:none}
-#pmenu div:hover{background:#f8f8f8}
 /* Profile panel */
-.panel{position:fixed;bottom:0;left:0;right:0;background:#fff;border-radius:20px 20px 0 0;box-shadow:0 -4px 24px rgba(0,0,0,0.15);z-index:100;transform:translateY(100%);transition:transform .32s cubic-bezier(.4,0,.2,1);max-height:75vh;overflow-y:auto;padding:0 0 30px}
+.panel{position:fixed;bottom:0;left:0;right:0;background:#fff;border-radius:20px 20px 0 0;box-shadow:0 -4px 24px rgba(0,0,0,0.15);z-index:100;transform:translateY(100%);transition:transform .3s cubic-bezier(.4,0,.2,1);max-height:78vh;overflow-y:auto;padding:0 0 32px}
 .panel.open{transform:translateY(0)}
-.ph{display:flex;align-items:center;padding:16px 18px 10px;gap:10px;position:sticky;top:0;background:#fff;border-bottom:1px solid var(--LN)}
-.pav{width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:20px;font-weight:700;flex-shrink:0}
+.ph{display:flex;align-items:center;padding:14px 16px 10px;gap:10px;position:sticky;top:0;background:#fff;border-bottom:1px solid var(--LN)}
+.pav{width:42px;height:42px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:19px;font-weight:700;flex-shrink:0}
 .pav.M{background:var(--BL);color:var(--BD)}.pav.F{background:var(--PL);color:var(--PD)}.pav.O{background:var(--GL);color:#3a3830}
-.pnm{font-family:'Playfair Display',serif;font-size:clamp(16px,4vw,20px);font-weight:700;flex:1}
+.pnm{font-family:'Playfair Display',serif;font-size:clamp(15px,4vw,19px);font-weight:700;flex:1}
 .pcl{color:var(--MU);font-size:12px}
-.pclose{background:none;border:none;font-size:22px;cursor:pointer;color:var(--MU);padding:4px}
-.pb{padding:14px 18px 0}
-.pr{margin-bottom:12px}
+.pclose{background:none;border:none;font-size:21px;cursor:pointer;color:var(--MU);padding:4px}
+.pb{padding:12px 16px 0}
+.pr{margin-bottom:11px}
 .prl{font-size:11px;font-weight:600;color:var(--MU);text-transform:uppercase;letter-spacing:.7px;margin-bottom:5px}
-.pills{display:flex;flex-wrap:wrap;gap:6px}
-.pill{border-radius:20px;padding:5px 12px;font-size:13px;font-weight:500;cursor:pointer;border:1.5px solid;transition:opacity .15s}
+.pills{display:flex;flex-wrap:wrap;gap:5px}
+.pill{border-radius:20px;padding:5px 11px;font-size:12px;font-weight:500;cursor:pointer;border:1.5px solid}
 .pill.M{background:var(--BL);border-color:var(--B);color:var(--BD)}
 .pill.F{background:var(--PL);border-color:var(--PK);color:var(--PD)}
 .pill.O{background:var(--GL);border-color:var(--GR);color:#3a3830}
 .pill.dead{opacity:0.6}
-.pdet{font-size:13px;color:var(--INK);display:flex;flex-direction:column;gap:4px}
-.pdet span{display:flex;gap:6px}.pdet b{color:var(--MU);font-weight:500;min-width:60px}
+.pdet{font-size:13px;display:flex;flex-direction:column;gap:3px}
+.pdet span{display:flex;gap:6px}.pdet b{color:var(--MU);font-weight:500;min-width:58px}
+/* Edit/Add buttons inside panel */
+.panel-actions{display:flex;gap:8px;padding:10px 16px 0}
+.pa-btn{flex:1;padding:9px;border:none;border-radius:10px;font-size:13px;font-weight:600;cursor:pointer;font-family:'DM Sans',sans-serif}
+.pa-btn.edit{background:var(--B);color:#fff}
+.pa-btn.del{background:#fee;color:var(--RD);border:1.5px solid #fcc}
 /* Edit form */
-.eform{padding:14px 18px 0;display:none}
+.eform{padding:12px 16px 0;display:none}
 .eform.open{display:block}
-.ef-row{margin-bottom:10px}
+.ef-row{margin-bottom:9px}
 .ef-row label{display:block;font-size:11px;font-weight:600;color:var(--MU);text-transform:uppercase;letter-spacing:.6px;margin-bottom:3px}
 .ef-row input,.ef-row select{width:100%;padding:8px 10px;border:1.5px solid var(--LN);border-radius:8px;font-size:14px;font-family:'DM Sans',sans-serif;outline:none}
 .ef-row input:focus,.ef-row select:focus{border-color:var(--B)}
-.ebtns{display:flex;gap:8px;margin-top:12px}
-.ebtn{flex:1;padding:10px;border:none;border-radius:10px;font-size:14px;font-weight:600;cursor:pointer;font-family:'DM Sans',sans-serif}
+.ebtns{display:flex;gap:8px;margin-top:10px}
+.ebtn{flex:1;padding:9px;border:none;border-radius:10px;font-size:13px;font-weight:600;cursor:pointer;font-family:'DM Sans',sans-serif}
 .ebtn.save{background:var(--B);color:#fff}
-.ebtn.del{background:#fee;color:var(--RD);border:1.5px solid var(--RD)}
+.ebtn.del{background:#fee;color:var(--RD);border:1.5px solid #fcc}
 .ebtn.cancel{background:var(--GL);color:var(--INK)}
-/* PIN modal */
+/* Modal */
 .modal{position:fixed;inset:0;background:rgba(0,0,0,0.5);z-index:200;display:flex;align-items:flex-end;justify-content:center;opacity:0;pointer-events:none;transition:opacity .2s}
 .modal.open{opacity:1;pointer-events:auto}
-.mbox{background:#fff;border-radius:20px 20px 0 0;padding:24px 20px 36px;width:100%;max-width:400px}
-.mbox h3{font-family:'Playfair Display',serif;font-size:18px;margin-bottom:6px}
-.mbox p{font-size:13px;color:var(--MU);margin-bottom:14px}
+.mbox{background:#fff;border-radius:20px 20px 0 0;padding:22px 20px 34px;width:100%;max-width:420px}
+.mbox h3{font-family:'Playfair Display',serif;font-size:18px;margin-bottom:5px}
+.mbox p{font-size:13px;color:var(--MU);margin-bottom:12px}
 .mbox input{width:100%;padding:10px 12px;border:1.5px solid var(--LN);border-radius:10px;font-size:16px;font-family:monospace;letter-spacing:4px;outline:none;margin-bottom:8px}
 .mbox input:focus{border-color:var(--B)}
 .merr{color:var(--RD);font-size:12px;min-height:16px;margin-bottom:8px}
@@ -100,9 +109,9 @@ header{background:linear-gradient(135deg,#1a3a5c 0%,#2c5f8a 100%);padding:10px 1
 .mbtn{flex:1;padding:10px;border:none;border-radius:10px;font-size:14px;font-weight:600;cursor:pointer;font-family:'DM Sans',sans-serif}
 .mbtn.ok{background:var(--B);color:#fff}
 .mbtn.cl{background:var(--GL);color:var(--INK)}
-/* Add modal */
-.addbox{background:#fff;border-radius:20px 20px 0 0;padding:20px 20px 36px;width:100%;max-width:440px;max-height:80vh;overflow-y:auto}
-.addbox h3{font-family:'Playfair Display',serif;font-size:18px;margin-bottom:14px}
+/* Add box */
+.addbox{background:#fff;border-radius:20px 20px 0 0;padding:18px 20px 34px;width:100%;max-width:440px;max-height:80vh;overflow-y:auto}
+.addbox h3{font-family:'Playfair Display',serif;font-size:18px;margin-bottom:12px}
 </style>
 </head>
 <body>
@@ -112,20 +121,28 @@ header{background:linear-gradient(135deg,#1a3a5c 0%,#2c5f8a 100%);padding:10px 1
     <div class="hbs">
       <button class="hb" onclick="resetView()">⟳ Reset</button>
       <button class="hb p" onclick="togglePrint()">🖨 Print ▾</button>
-      <button class="hb g" onclick="openAdd()">＋ Add</button>
-      <button class="hb r" id="editbtn">✎ Edit</button>
+      <button class="hb doc" onclick="window.open('https://vkv-coder.github.io/VORA-FAMILY-TREE/preamble.pdf','_blank')">📖 Preamble</button>
+      <button class="hb doc" onclick="window.open('https://vkv-coder.github.io/VORA-FAMILY-TREE/rituals.pdf','_blank')">📄 Rituals</button>
     </div>
   </div>
   <div class="nm">🙏 Shree Bahuchar Matay Namah 🙏</div>
   <div class="krow">
     <button class="kbtn" onclick="window.open('https://maps.google.com/?q=Dholidhar+Dhrangadhra+Gujarat','_blank')">
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="#EA4335"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="#EA4335"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
       Kuldevi Location ↗
     </button>
+    <button class="kbtn" onclick="filterLiving()" id="livebtn">👁 Living</button>
+    <button class="kbtn" onclick="openAdd()" style="background:rgba(26,95,29,0.5)">＋ Add</button>
+    <div class="srch">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+      <input id="si" type="search" placeholder="Search name or city…" oninput="doSearch(this.value)" autocomplete="off">
+    </div>
   </div>
-  <!-- Roots: KALYANJI is the start of THIS tree, ancestors trail upward to the right -->
+  <!-- Dynamic lineage trail — shows when person is selected -->
+  <div id="tr"></div>
+  <!-- Static roots strip -->
   <div class="anc-strip">
-    <span class="anc-label">Roots:</span>
+    <span style="color:rgba(255,255,255,0.4);font-size:9px;margin-right:2px">Roots:</span>
     <span class="anc-root">KALYANJI</span>
     <span class="anc-sep">←</span>
     <span class="anc-name">RATANSHI</span>
@@ -143,10 +160,8 @@ header{background:linear-gradient(135deg,#1a3a5c 0%,#2c5f8a 100%);padding:10px 1
   <div class="stbar">
     <span id="st-total">46 members</span>
     <span id="st-living">— living</span>
-    <span id="st-gen">6 generations</span>
     <span id="st-cities">— cities</span>
   </div>
-  <!-- Print dropdown -->
   <div id="pmenu">
     <div onclick="doPrint('full')">🏠 Full tree — all 46 members</div>
     <div onclick="doPrint('view')">👁 Current view on screen</div>
@@ -156,20 +171,21 @@ header{background:linear-gradient(135deg,#1a3a5c 0%,#2c5f8a 100%);padding:10px 1
 <div id="cw">
   <svg id="sv"></svg>
   <div id="mv"></div>
-  <div class="sb">
-    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
-    <input id="si" type="search" placeholder="Search name or city…" oninput="doSearch(this.value)" autocomplete="off">
-  </div>
 </div>
 
 <!-- Profile panel -->
 <div class="panel" id="pp">
   <div class="ph">
     <div class="pav" id="p-av"></div>
-    <div><div class="pnm" id="p-nm"></div><div class="pcl" id="p-cl"></div></div>
+    <div style="flex:1"><div class="pnm" id="p-nm"></div><div class="pcl" id="p-cl"></div></div>
     <button class="pclose" onclick="closePanel()">✕</button>
   </div>
   <div class="pb" id="p-body"></div>
+  <!-- Edit/Delete inside panel -->
+  <div class="panel-actions" id="p-actions">
+    <button class="pa-btn edit" onclick="onEditClick()">✎ Edit</button>
+    <button class="pa-btn del" onclick="onDeleteClick()">🗑 Delete</button>
+  </div>
   <div class="eform" id="ef">
     <div class="ef-row"><label>Name</label><input id="ef-name" type="text"></div>
     <div class="ef-row"><label>Gender</label>
@@ -181,7 +197,6 @@ header{background:linear-gradient(135deg,#1a3a5c 0%,#2c5f8a 100%);padding:10px 1
     <div class="ef-row"><label>Phone</label><input id="ef-phone" type="text"></div>
     <div class="ebtns">
       <button class="ebtn save" onclick="saveEdit()">Save</button>
-      <button class="ebtn del" onclick="deletePerson()">Delete</button>
       <button class="ebtn cancel" onclick="cancelEdit()">Cancel</button>
     </div>
   </div>
@@ -201,32 +216,32 @@ header{background:linear-gradient(135deg,#1a3a5c 0%,#2c5f8a 100%);padding:10px 1
   </div>
 </div>
 
-<!-- Add person modal -->
+<!-- Add modal -->
 <div class="modal" id="add-modal">
   <div class="addbox">
     <h3>➕ Add Person</h3>
-    <div class="ef-row"><label>Name *</label><input id="an" type="text" placeholder="Full name"></div>
+    <div class="ef-row"><label>Name *</label><input id="an" type="text"></div>
     <div class="ef-row"><label>Gender *</label>
       <select id="as"><option value="M">Male</option><option value="F">Female</option><option value="O">Other</option></select>
     </div>
-    <div class="ef-row"><label>Birth Year</label><input id="ab" type="text" placeholder="e.g. 1985"></div>
-    <div class="ef-row"><label>Death Year</label><input id="ad" type="text" placeholder="Leave blank if living"></div>
+    <div class="ef-row"><label>Birth Year</label><input id="ab" type="text" placeholder="e.g. 1990"></div>
+    <div class="ef-row"><label>Death Year</label><input id="ad" type="text" placeholder="blank = living"></div>
     <div class="ef-row"><label>City</label><input id="ac" type="text"></div>
     <div class="ef-row"><label>Phone</label><input id="aph" type="text"></div>
-    <div class="ef-row"><label>Father (select ID)</label>
-      <input id="af" type="text" placeholder="Type name to search…" oninput="suggestParent('af','af-list')" autocomplete="off">
-      <div id="af-list" style="font-size:12px;color:var(--MU);margin-top:3px"></div>
+    <div class="ef-row"><label>Father</label>
+      <input id="af" type="text" placeholder="Type name to search…" oninput="sug('af','afl')" autocomplete="off">
+      <div id="afl" style="font-size:12px;color:var(--MU);margin-top:2px"></div>
     </div>
-    <div class="ef-row"><label>Mother (select ID)</label>
-      <input id="am" type="text" placeholder="Type name to search…" oninput="suggestParent('am','am-list')" autocomplete="off">
-      <div id="am-list" style="font-size:12px;color:var(--MU);margin-top:3px"></div>
+    <div class="ef-row"><label>Mother</label>
+      <input id="am" type="text" placeholder="Type name to search…" oninput="sug('am','aml')" autocomplete="off">
+      <div id="aml" style="font-size:12px;color:var(--MU);margin-top:2px"></div>
     </div>
-    <div class="ef-row"><label>Spouse (select ID)</label>
-      <input id="asp" type="text" placeholder="Type name to search…" oninput="suggestParent('asp','asp-list')" autocomplete="off">
-      <div id="asp-list" style="font-size:12px;color:var(--MU);margin-top:3px"></div>
+    <div class="ef-row"><label>Spouse</label>
+      <input id="asp" type="text" placeholder="Type name to search…" oninput="sug('asp','aspl')" autocomplete="off">
+      <div id="aspl" style="font-size:12px;color:var(--MU);margin-top:2px"></div>
     </div>
     <div class="ebtns">
-      <button class="ebtn save" onclick="saveAdd()">Add Person</button>
+      <button class="ebtn save" onclick="saveAdd()">Add</button>
       <button class="ebtn cancel" onclick="closeAdd()">Cancel</button>
     </div>
   </div>
@@ -235,7 +250,7 @@ header{background:linear-gradient(135deg,#1a3a5c 0%,#2c5f8a 100%);padding:10px 1
 <script>
 // ─── DATA ────────────────────────────────────────────────────────────────────
 const PIN='vkv2';
-let adminUnlocked=false, pinAction='', editingId=null, selId=null, showLivingOnly=false;
+let adminUnlocked=false,pinAction='',editingId=null,selId=null,showLivingOnly=false;
 
 const PEOPLE={
   'I1': {id:'I1', name:'Vijay Vora',       sex:'M',born:'1959',died:'',   city:'Baroda',    phone:'9327243611',fams:['F1'],famc:['F2']},
@@ -310,19 +325,26 @@ const FAMILIES={
 // ─── HELPERS ─────────────────────────────────────────────────────────────────
 function isDead(p){return !!(p.died&&p.died!=='');}
 function getChildren(pid){
-  let kids=[];
-  Object.values(FAMILIES).forEach(f=>{if((f.husb===pid||f.wife===pid)&&f.children)kids.push(...f.children);});
-  return[...new Set(kids)];
+  let k=[];Object.values(FAMILIES).forEach(f=>{if((f.husb===pid||f.wife===pid)&&f.children)k.push(...f.children);});
+  return[...new Set(k)];
 }
 function getParents(pid){
-  let p=PEOPLE[pid];if(!p)return[];let parents=[];
-  p.famc.forEach(fid=>{let f=FAMILIES[fid];if(!f)return;if(f.husb&&PEOPLE[f.husb])parents.push(f.husb);if(f.wife&&PEOPLE[f.wife])parents.push(f.wife);});
-  return parents;
+  let p=PEOPLE[pid];if(!p)return[];let r=[];
+  p.famc.forEach(fid=>{let f=FAMILIES[fid];if(!f)return;if(f.husb&&PEOPLE[f.husb])r.push(f.husb);if(f.wife&&PEOPLE[f.wife])r.push(f.wife);});
+  return r;
 }
 function getSpouses(pid){
-  let p=PEOPLE[pid];if(!p)return[];let sp=[];
-  p.fams.forEach(fid=>{let f=FAMILIES[fid];if(!f)return;if(f.husb===pid&&f.wife&&PEOPLE[f.wife])sp.push(f.wife);if(f.wife===pid&&f.husb&&PEOPLE[f.husb])sp.push(f.husb);});
-  return sp;
+  let p=PEOPLE[pid];if(!p)return[];let r=[];
+  p.fams.forEach(fid=>{let f=FAMILIES[fid];if(!f)return;if(f.husb===pid&&f.wife&&PEOPLE[f.wife])r.push(f.wife);if(f.wife===pid&&f.husb&&PEOPLE[f.husb])r.push(f.husb);});
+  return r;
+}
+function getLineage(pid,vis=new Set()){
+  if(vis.has(pid))return[];vis.add(pid);
+  let parents=getParents(pid);
+  if(!parents.length)return[pid];
+  // follow male line (husb side)
+  let maleParent=parents.find(p=>PEOPLE[p]&&PEOPLE[p].sex==='M')||parents[0];
+  return[...getLineage(maleParent,vis),pid];
 }
 function updateStats(){
   let all=Object.values(PEOPLE);
@@ -334,17 +356,15 @@ function updateStats(){
 }
 
 // ─── LAYOUT ──────────────────────────────────────────────────────────────────
-const NW=96,NH=52,HGAP=16,VGAP=78;
+const NW=100,NH=52,HGAP=20,VGAP=82;
 let positions={};
 
 function subtreeW(pid,vis=new Set()){
   if(vis.has(pid))return NW;vis.add(pid);
   let kids=getChildren(pid).filter(k=>PEOPLE[k]);
   if(!kids.length)return NW;
-  // account for spouse beside each node
-  let spaceForSpouse=NW+12;
   let tot=kids.reduce((s,k)=>s+subtreeW(k,new Set(vis))+HGAP,0)-HGAP;
-  return Math.max(spaceForSpouse,tot);
+  return Math.max(NW+HGAP+10,tot); // +spouse space
 }
 
 function assignPos(pid,x,y,vis=new Set()){
@@ -352,27 +372,33 @@ function assignPos(pid,x,y,vis=new Set()){
   vis.add(pid);
   if(!positions[pid])positions[pid]={x,y};
 
-  // Place spouse to the right of this person
-  let spouses=getSpouses(pid);
-  spouses.forEach(spId=>{
-    if(!positions[spId]&&PEOPLE[spId]){
-      positions[spId]={x:x+NW+12,y};
-    }
+  // Place spouse to right
+  getSpouses(pid).forEach(spId=>{
+    if(!positions[spId]&&PEOPLE[spId])positions[spId]={x:x+NW+14,y};
   });
 
-  // Place children
-  let famsAsHusb=PEOPLE[pid].fams.filter(fid=>{
-    let f=FAMILIES[fid];return f&&(f.husb===pid);
-  });
-  famsAsHusb.forEach(fid=>{
-    let fam=FAMILIES[fid];
+  // Place children — only through families where this person is the husb
+  PEOPLE[pid].fams.forEach(fid=>{
+    let fam=FAMILIES[fid];if(!fam||fam.husb!==pid)return;
     let kids=fam.children.filter(k=>PEOPLE[k]&&!vis.has(k));
     if(!kids.length)return;
     let totW=kids.reduce((s,k)=>s+subtreeW(k)+HGAP,0)-HGAP;
-    // midpoint between this person and spouse
-    let spX=fam.wife&&positions[fam.wife]?positions[fam.wife].x:x;
-    let midX=(x+NW/2+spX+NW/2)/2;
+    let spPos=fam.wife&&positions[fam.wife]?positions[fam.wife]:null;
+    let midX=spPos?(x+NW/2+spPos.x+NW/2)/2:x+NW/2;
     let startX=midX-totW/2;
+    kids.forEach(k=>{
+      let kw=subtreeW(k);
+      assignPos(k,startX,y+NH+VGAP,new Set(vis));
+      startX+=kw+HGAP;
+    });
+  });
+  // Also handle families where this person is the wife (for female-headed families)
+  PEOPLE[pid].fams.forEach(fid=>{
+    let fam=FAMILIES[fid];if(!fam||fam.husb===pid||fam.husb)return;
+    let kids=fam.children.filter(k=>PEOPLE[k]&&!vis.has(k));
+    if(!kids.length)return;
+    let totW=kids.reduce((s,k)=>s+subtreeW(k)+HGAP,0)-HGAP;
+    let startX=(positions[pid]?positions[pid].x:x)+NW/2-totW/2;
     kids.forEach(k=>{
       let kw=subtreeW(k);
       assignPos(k,startX,y+NH+VGAP,new Set(vis));
@@ -383,9 +409,7 @@ function assignPos(pid,x,y,vis=new Set()){
 
 function layoutTree(){
   positions={};
-  // Root is I6 (Kalyanji). His only child in fam F4 is I4 (Vrajlal)
   assignPos('I6',0,0);
-  // Place any unpositioned nodes
   let maxY=Object.values(positions).reduce((m,p)=>Math.max(m,p.y),0);
   let ox=0;
   Object.keys(PEOPLE).forEach(pid=>{
@@ -403,14 +427,13 @@ function render(filter=''){
   mv.innerHTML='';sv.innerHTML='';nodeEls={};
 
   const fl=filter.toLowerCase().trim();
-  const visSet=new Set();
+  const vis=new Set();
   Object.values(PEOPLE).forEach(p=>{
     if(showLivingOnly&&isDead(p))return;
     if(fl&&!p.name.toLowerCase().includes(fl)&&!p.city.toLowerCase().includes(fl))return;
-    visSet.add(p.id);
+    vis.add(p.id);
   });
 
-  // Calc canvas size
   let allPos=Object.values(positions);
   let maxX=allPos.reduce((m,p)=>Math.max(m,p.x),0)+NW+60;
   let maxY=allPos.reduce((m,p)=>Math.max(m,p.y),0)+NH+60;
@@ -418,11 +441,10 @@ function render(filter=''){
   sv.style.width=maxX+'px';sv.style.height=maxY+'px';
   mv.style.width=maxX+'px';mv.style.height=maxY+'px';
 
-  // Draw SVG connectors
+  // SVG connectors
   let lines='';
   Object.entries(FAMILIES).forEach(([fid,fam])=>{
-    let kids=fam.children.filter(k=>visSet.has(k)&&positions[k]);
-    if(!kids.length)return;
+    let kids=fam.children.filter(k=>vis.has(k)&&positions[k]);
     let pids=[fam.husb,fam.wife].filter(x=>x&&positions[x]);
     if(!pids.length)return;
 
@@ -431,38 +453,35 @@ function render(filter=''){
     let pmx=(p1.x+NW/2+p2.x+NW/2)/2;
     let py=p1.y+NH;
 
-    // Spouse connector (horizontal line between them)
     if(pids.length===2){
-      let lx=p1.x+NW, rx=p2.x;
+      let lx=Math.min(p1.x+NW,p2.x+NW),rx=Math.max(p1.x,p2.x);
+      lx=p1.x+NW;rx=p2.x;
       if(rx<lx){lx=p2.x+NW;rx=p1.x;}
       let cy=p1.y+NH/2;
       lines+=`<line x1="${lx}" y1="${cy}" x2="${rx}" y2="${cy}" stroke="#C8A96A" stroke-width="1.5" opacity="0.6"/>`;
     }
 
-    // Parent→child connectors
     kids.forEach(k=>{
       let kp=positions[k];
-      let kx=kp.x+NW/2;
-      let ky=kp.y;
+      let kx=kp.x+NW/2,ky=kp.y;
       let my=py+(ky-py)*0.45;
       lines+=`<path d="M${pmx},${py} L${pmx},${my} L${kx},${my} L${kx},${ky}" fill="none" stroke="#C8A96A" stroke-width="1.5" stroke-dasharray="5,3" opacity="0.7"/>`;
     });
   });
   sv.innerHTML=lines;
 
-  // Draw nodes
+  // Nodes
   Object.values(PEOPLE).forEach(p=>{
     let pos=positions[p.id];if(!pos)return;
-    let ghost=!visSet.has(p.id);
+    let ghost=!vis.has(p.id);
     let dead=isDead(p);
     let sub=p.born?(dead&&p.died&&p.died!=='†'?p.born+'–'+p.died:p.born):'';
-    if(p.city&&!sub)sub=p.city;
-    else if(p.city&&sub)sub+=', '+p.city;
+    if(p.city&&!sub)sub=p.city;else if(p.city&&sub)sub+=', '+p.city;
 
     let nd=document.createElement('div');
-    nd.className='nd'+(ghost?' ghost':'');
+    nd.className='nd';
     nd.style.cssText=`left:${pos.x}px;top:${pos.y}px;width:${NW}px;${ghost?'opacity:0;pointer-events:none':''}`;
-    nd.innerHTML=`<div class="np ${p.sex}${dead?' dead':''}${p.id===selId?' sel':''}" style="width:${NW}px;min-height:${NH}px;font-size:clamp(10px,2.5vw,12px)" data-id="${p.id}">
+    nd.innerHTML=`<div class="np ${p.sex}${dead?' dead':''}${p.id===selId?' sel':''}" style="width:${NW}px;min-height:${NH}px" data-id="${p.id}">
       <div class="nn">${p.name}</div>
       ${sub?`<div class="nc">${sub}</div>`:''}
     </div>`;
@@ -472,10 +491,10 @@ function render(filter=''){
   });
 }
 
-// ─── PAN + ZOOM ───────────────────────────────────────────────────────────────
+// ─── PAN/ZOOM ─────────────────────────────────────────────────────────────────
 let tx=0,ty=0,sc=1,drag=false,moved=false,sx=0,sy=0,stx=0,sty=0;
 let pinch=false,pd=0,psc=1,ptx=0,pty=0,pmx=0,pmy=0;
-const cw=document.getElementById('cw');
+const cwEl=document.getElementById('cw');
 const mvEl=document.getElementById('mv');
 const svEl=document.getElementById('sv');
 
@@ -483,26 +502,24 @@ function applyT(){
   mvEl.style.transform=`translate(${tx}px,${ty}px) scale(${sc})`;
   svEl.style.transform=`translate(${tx}px,${ty}px) scale(${sc})`;
 }
-
-cw.addEventListener('mousedown',e=>{if(e.button!==0)return;drag=true;moved=false;sx=e.clientX;sy=e.clientY;stx=tx;sty=ty;cw.classList.add('g');});
+cwEl.addEventListener('mousedown',e=>{if(e.button!==0)return;drag=true;moved=false;sx=e.clientX;sy=e.clientY;stx=tx;sty=ty;cwEl.classList.add('g');});
 window.addEventListener('mousemove',e=>{if(!drag)return;let dx=e.clientX-sx,dy=e.clientY-sy;if(Math.abs(dx)>4||Math.abs(dy)>4)moved=true;tx=stx+dx;ty=sty+dy;applyT();});
-window.addEventListener('mouseup',()=>{drag=false;cw.classList.remove('g');});
-cw.addEventListener('wheel',e=>{e.preventDefault();let f=e.deltaY<0?1.12:0.89;let r=cw.getBoundingClientRect();let mx=e.clientX-r.left,my=e.clientY-r.top;tx=(tx-mx)*f+mx;ty=(ty-my)*f+my;sc=Math.min(3,Math.max(0.15,sc*f));applyT();},{passive:false});
-cw.addEventListener('touchstart',e=>{
+window.addEventListener('mouseup',()=>{drag=false;cwEl.classList.remove('g');});
+cwEl.addEventListener('wheel',e=>{e.preventDefault();let f=e.deltaY<0?1.12:0.89;let r=cwEl.getBoundingClientRect();let mx=e.clientX-r.left,my=e.clientY-r.top;tx=(tx-mx)*f+mx;ty=(ty-my)*f+my;sc=Math.min(3,Math.max(0.15,sc*f));applyT();},{passive:false});
+cwEl.addEventListener('touchstart',e=>{
   if(e.touches.length===1){pinch=false;drag=true;moved=false;sx=e.touches[0].clientX;sy=e.touches[0].clientY;stx=tx;sty=ty;}
   else if(e.touches.length===2){drag=false;pinch=true;pd=Math.hypot(e.touches[0].clientX-e.touches[1].clientX,e.touches[0].clientY-e.touches[1].clientY);psc=sc;ptx=tx;pty=ty;pmx=(e.touches[0].clientX+e.touches[1].clientX)/2;pmy=(e.touches[0].clientY+e.touches[1].clientY)/2;}
 },{passive:true});
-cw.addEventListener('touchmove',e=>{
+cwEl.addEventListener('touchmove',e=>{
   if(e.touches.length===1&&drag&&!pinch){let dx=e.touches[0].clientX-sx,dy=e.touches[0].clientY-sy;if(Math.abs(dx)>6||Math.abs(dy)>6)moved=true;tx=stx+dx;ty=sty+dy;applyT();}
-  else if(e.touches.length===2&&pinch){let nd2=Math.hypot(e.touches[0].clientX-e.touches[1].clientX,e.touches[0].clientY-e.touches[1].clientY);let f=nd2/pd;sc=Math.min(3,Math.max(0.15,psc*f));let r=cw.getBoundingClientRect();tx=(ptx-pmx+r.left)*f+pmx-r.left;ty=(pty-pmy+r.top)*f+pmy-r.top;applyT();}
+  else if(e.touches.length===2&&pinch){let nd2=Math.hypot(e.touches[0].clientX-e.touches[1].clientX,e.touches[0].clientY-e.touches[1].clientY);let f=nd2/pd;sc=Math.min(3,Math.max(0.15,psc*f));let r=cwEl.getBoundingClientRect();tx=(ptx-pmx+r.left)*f+pmx-r.left;ty=(pty-pmy+r.top)*f+pmy-r.top;applyT();}
 },{passive:true});
-cw.addEventListener('touchend',e=>{if(e.touches.length===0){drag=false;pinch=false;}if(e.touches.length===1)pinch=false;},{passive:true});
+cwEl.addEventListener('touchend',e=>{if(e.touches.length===0){drag=false;pinch=false;}if(e.touches.length===1)pinch=false;},{passive:true});
 
 function resetView(){
-  sc=0.85;
-  let r=cw.getBoundingClientRect();
+  sc=0.85;let r=cwEl.getBoundingClientRect();
   let pos=positions['I6'];
-  if(pos){tx=r.width/2-pos.x*sc-NW*sc/2;ty=30;}
+  if(pos){tx=r.width/2-pos.x*sc-NW*sc/2;ty=40;}
   applyT();
 }
 
@@ -510,7 +527,22 @@ function resetView(){
 function doSearch(v){render(v);}
 function filterLiving(){
   showLivingOnly=!showLivingOnly;
+  let btn=document.getElementById('livebtn');
+  btn.style.background=showLivingOnly?'rgba(26,95,29,0.6)':'rgba(255,255,255,0.13)';
   render(document.getElementById('si').value);
+}
+
+// ─── LINEAGE TRAIL ───────────────────────────────────────────────────────────
+function showTrail(pid){
+  let trail=getLineage(pid);
+  let tr=document.getElementById('tr');
+  if(trail.length<=1){tr.style.display='none';return;}
+  tr.style.display='block';
+  tr.innerHTML=trail.map((id,i)=>{
+    let p=PEOPLE[id];if(!p)return'';
+    let last=i===trail.length-1;
+    return `<span class="ti${last?' ':''}${last?'" style="color:var(--AU);font-weight:700':'"}"  onclick="openProfile('${id}')">${p.name}</span>${last?'':'<span class="ts">›</span>'}`;
+  }).join('');
 }
 
 // ─── PROFILE PANEL ────────────────────────────────────────────────────────────
@@ -537,47 +569,53 @@ function openProfile(pid){
   if(kids.length){body+=`<div class="pr"><div class="prl">Children (${kids.length})</div><div class="pills">`;kids.forEach(k=>{let pr=PEOPLE[k];if(pr)body+=pillHtml(pr);});body+=`</div></div>`;}
   body+=`<div class="pr"><div class="prl">Details</div><div class="pdet">`;
   if(p.phone)body+=`<span><b>📞</b>${p.phone}</span>`;
-  body+=`<span><b>ID</b>${p.id}</span>`;
-  body+=`</div></div>`;
-
+  body+=`<span><b>ID</b>${p.id}</span></div></div>`;
   document.getElementById('p-body').innerHTML=body;
   document.getElementById('ef').classList.remove('open');
   document.getElementById('pp').classList.add('open');
 
-  // Highlight
+  // Show lineage trail in header
+  showTrail(pid);
+
+  // Highlight node
   Object.values(nodeEls).forEach(n=>{let np=n.querySelector('.np');if(np)np.classList.remove('sel');});
   if(nodeEls[pid])nodeEls[pid].querySelector('.np').classList.add('sel');
 
   // Scroll into view
   let pos=positions[pid];
   if(pos){
-    let r=cw.getBoundingClientRect();
+    let r=cwEl.getBoundingClientRect();
     let nx=pos.x*sc+tx,ny=pos.y*sc+ty;
-    if(nx<20||nx>r.width-20||ny<20||ny>r.height*0.55){
-      tx=r.width/2-pos.x*sc-NW*sc/2;
-      ty=r.height*0.25-pos.y*sc;
-      applyT();
+    if(nx<20||nx>r.width-20||ny<20||ny>r.height*0.5){
+      tx=r.width/2-pos.x*sc-NW*sc/2;ty=r.height*0.2-pos.y*sc;applyT();
     }
   }
 }
 
 function pillHtml(p){
-  let dead=isDead(p)?'dead':'';
-  return `<span class="pill ${p.sex} ${dead}" onclick="openProfile('${p.id}')">${p.name}${p.born?' ('+p.born+')':''}</span>`;
+  return `<span class="pill ${p.sex}${isDead(p)?' dead':''}" onclick="openProfile('${p.id}')">${p.name}${p.born?' ('+p.born+')':''}</span>`;
 }
 
 function closePanel(){
   document.getElementById('pp').classList.remove('open');
+  document.getElementById('tr').style.display='none';
   selId=null;
   Object.values(nodeEls).forEach(n=>{let np=n.querySelector('.np');if(np)np.classList.remove('sel');});
 }
 document.getElementById('pp').addEventListener('click',function(e){if(e.target===this)closePanel();});
 
-// ─── PIN + EDIT ───────────────────────────────────────────────────────────────
+// ─── EDIT ─────────────────────────────────────────────────────────────────────
+function onEditClick(){
+  if(!selId)return;
+  if(adminUnlocked)openEditForm();else openPin('edit');
+}
+function onDeleteClick(){
+  if(!selId)return;
+  if(adminUnlocked)confirmDelete();else openPin('delete');
+}
 function openPin(action){
   pinAction=action;
-  document.getElementById('pi').value='';
-  document.getElementById('pe').textContent='';
+  document.getElementById('pi').value='';document.getElementById('pe').textContent='';
   document.getElementById('pin-modal').classList.add('open');
   setTimeout(()=>document.getElementById('pi').focus(),300);
 }
@@ -585,16 +623,12 @@ function closePin(){document.getElementById('pin-modal').classList.remove('open'
 function checkPin(){
   if(document.getElementById('pi').value===PIN){
     adminUnlocked=true;closePin();
-    if(pinAction==='edit'&&selId)openEditForm();
+    if(pinAction==='edit')openEditForm();
+    else if(pinAction==='delete')confirmDelete();
     else if(pinAction==='add')openAddForm();
   }else{document.getElementById('pe').textContent='Wrong PIN';}
 }
 document.getElementById('pin-modal').addEventListener('click',function(e){if(e.target===this)closePin();});
-
-document.getElementById('editbtn').addEventListener('click',function(){
-  if(!selId){alert('Tap a person first, then click Edit');return;}
-  if(adminUnlocked)openEditForm();else openPin('edit');
-});
 
 function openEditForm(){
   if(!selId)return;
@@ -607,31 +641,34 @@ function openEditForm(){
   document.getElementById('ef-phone').value=p.phone||'';
   editingId=selId;
   document.getElementById('ef').classList.add('open');
+  document.getElementById('p-actions').style.display='none';
 }
-function cancelEdit(){document.getElementById('ef').classList.remove('open');}
+function cancelEdit(){
+  document.getElementById('ef').classList.remove('open');
+  document.getElementById('p-actions').style.display='flex';
+}
 function saveEdit(){
   if(!editingId)return;
   let p=PEOPLE[editingId];
   p.name=document.getElementById('ef-name').value.trim()||p.name;
   p.sex=document.getElementById('ef-sex').value;
   p.born=document.getElementById('ef-born').value.trim();
-  let dy=document.getElementById('ef-died').value.trim();p.died=dy;
+  p.died=document.getElementById('ef-died').value.trim();
   p.city=document.getElementById('ef-city').value.trim();
   p.phone=document.getElementById('ef-phone').value.trim();
   document.getElementById('ef').classList.remove('open');
+  document.getElementById('p-actions').style.display='flex';
   closePanel();render(document.getElementById('si').value);updateStats();
 }
-function deletePerson(){
-  if(!editingId||!confirm('Delete '+PEOPLE[editingId].name+'?'))return;
+function confirmDelete(){
+  if(!selId||!confirm('Delete '+PEOPLE[selId].name+'?'))return;
+  let id=selId;
   Object.values(FAMILIES).forEach(f=>{
-    if(f.husb===editingId)f.husb='';
-    if(f.wife===editingId)f.wife='';
-    f.children=f.children.filter(c=>c!==editingId);
+    if(f.husb===id)f.husb='';if(f.wife===id)f.wife='';
+    f.children=f.children.filter(c=>c!==id);
   });
-  delete PEOPLE[editingId];
-  editingId=null;selId=null;
-  document.getElementById('ef').classList.remove('open');
-  closePanel();render(document.getElementById('si').value);updateStats();
+  delete PEOPLE[id];
+  selId=null;closePanel();render(document.getElementById('si').value);updateStats();
 }
 
 // ─── ADD ──────────────────────────────────────────────────────────────────────
@@ -644,36 +681,36 @@ function openAddForm(){
 function closeAdd(){document.getElementById('add-modal').classList.remove('open');}
 document.getElementById('add-modal').addEventListener('click',function(e){if(e.target===this)closeAdd();});
 
-function suggestParent(inputId,listId){
-  let v=document.getElementById(inputId).value.toLowerCase();
-  let list=document.getElementById(listId);
-  if(!v){list.innerHTML='';return;}
+function sug(inp,lst){
+  let v=document.getElementById(inp).value.toLowerCase();
+  let el=document.getElementById(lst);
+  if(!v){el.innerHTML='';return;}
   let matches=Object.values(PEOPLE).filter(p=>p.name.toLowerCase().includes(v)).slice(0,4);
-  list.innerHTML=matches.map(p=>`<span style="cursor:pointer;margin-right:8px;color:var(--B)" onclick="document.getElementById('${inputId}').value='${p.id}';document.getElementById('${listId}').innerHTML='${p.name.replace(/'/g,"\\'")} ✓'">${p.name} (${p.id})</span>`).join('');
+  el.innerHTML=matches.map(p=>`<span style="cursor:pointer;margin-right:8px;color:var(--B)" onclick="document.getElementById('${inp}').value='${p.id}';document.getElementById('${lst}').innerHTML='${p.name.replace(/'/g,"\\'")} ✓'">${p.name} (${p.id})</span>`).join('');
 }
 
 function saveAdd(){
   let name=document.getElementById('an').value.trim();
-  if(!name){alert('Name is required');return;}
-  let newId='I'+(Object.keys(PEOPLE).length+100);
+  if(!name){alert('Name required');return;}
+  let newId='I'+(Object.keys(PEOPLE).length+200);
   while(PEOPLE[newId])newId='I'+(parseInt(newId.slice(1))+1);
   let born=document.getElementById('ab').value.trim();
   let died=document.getElementById('ad').value.trim();
-  let fatherId=document.getElementById('af').value.trim();
-  let motherId=document.getElementById('am').value.trim();
-  let spouseId=document.getElementById('asp').value.trim();
+  let fId=document.getElementById('af').value.trim();
+  let mId=document.getElementById('am').value.trim();
+  let spId=document.getElementById('asp').value.trim();
   PEOPLE[newId]={id:newId,name,sex:document.getElementById('as').value,born,died,city:document.getElementById('ac').value.trim(),phone:document.getElementById('aph').value.trim(),fams:[],famc:[]};
-  if(fatherId||motherId){
+  if(fId||mId){
     let famId=null;
-    Object.entries(FAMILIES).forEach(([fid,f])=>{if((fatherId&&f.husb===fatherId)||(motherId&&f.wife===motherId))famId=fid;});
-    if(!famId){famId='F'+(Object.keys(FAMILIES).length+100);FAMILIES[famId]={husb:fatherId||'',wife:motherId||'',children:[]};if(fatherId&&PEOPLE[fatherId])PEOPLE[fatherId].fams.push(famId);if(motherId&&PEOPLE[motherId])PEOPLE[motherId].fams.push(famId);}
+    Object.entries(FAMILIES).forEach(([fid,f])=>{if((fId&&f.husb===fId)||(mId&&f.wife===mId))famId=fid;});
+    if(!famId){famId='F'+(Object.keys(FAMILIES).length+200);FAMILIES[famId]={husb:fId||'',wife:mId||'',children:[]};if(fId&&PEOPLE[fId])PEOPLE[fId].fams.push(famId);if(mId&&PEOPLE[mId])PEOPLE[mId].fams.push(famId);}
     FAMILIES[famId].children.push(newId);PEOPLE[newId].famc.push(famId);
   }
-  if(spouseId&&PEOPLE[spouseId]){
-    let sp=PEOPLE[spouseId];let newFamId='F'+(Object.keys(FAMILIES).length+101);
-    let isMale=PEOPLE[newId].sex==='M';
-    FAMILIES[newFamId]={husb:isMale?newId:spouseId,wife:isMale?spouseId:newId,children:[]};
-    PEOPLE[newId].fams.push(newFamId);sp.fams.push(newFamId);
+  if(spId&&PEOPLE[spId]){
+    let newFamId='F'+(Object.keys(FAMILIES).length+201);
+    let male=PEOPLE[newId].sex==='M';
+    FAMILIES[newFamId]={husb:male?newId:spId,wife:male?spId:newId,children:[]};
+    PEOPLE[newId].fams.push(newFamId);PEOPLE[spId].fams.push(newFamId);
   }
   closeAdd();render(document.getElementById('si').value);updateStats();openProfile(newId);
 }
@@ -693,23 +730,13 @@ function doPrint(mode){
   const pNW=90,pNH=44,pHG=16,pVG=60;
   let printNodes=[],printPeople={},placed=new Set();
 
-  function pSubW(pid,vis=new Set()){
-    if(vis.has(pid))return 1;vis.add(pid);
-    let kids=getChildren(pid).filter(k=>PEOPLE[k]);
-    if(!kids.length)return 1;
-    return kids.reduce((s,k)=>s+pSubW(k,new Set(vis)),0);
-  }
+  function pSubW(pid,vis=new Set()){if(vis.has(pid))return 1;vis.add(pid);let k=getChildren(pid).filter(c=>PEOPLE[c]);if(!k.length)return 1;return k.reduce((s,c)=>s+pSubW(c,new Set(vis)),0);}
   function pPlace(pid,x,y,vis=new Set()){
     if(vis.has(pid)||!PEOPLE[pid])return;vis.add(pid);placed.add(pid);
     printPeople[pid]=PEOPLE[pid];
-    let spouses=getSpouses(pid).filter(s=>!placed.has(s)&&PEOPLE[s]);
+    let sps=getSpouses(pid).filter(s=>!placed.has(s)&&PEOPLE[s]);
     let spX=null;
-    if(spouses.length){
-      let spId=spouses[0];placed.add(spId);
-      spX=x+pNW+pHG;
-      printNodes.push({id:spId,x:spX,y,isSp:true});
-      printPeople[spId]=PEOPLE[spId];
-    }
+    if(sps.length){let spId=sps[0];placed.add(spId);spX=x+pNW+pHG;printNodes.push({id:spId,x:spX,y,isSp:true});printPeople[spId]=PEOPLE[spId];}
     printNodes.push({id:pid,x,y,spX});
     let kids=getChildren(pid).filter(k=>PEOPLE[k]&&!vis.has(k));
     if(kids.length){
@@ -718,87 +745,29 @@ function doPrint(mode){
       let totPx=tot*(pNW+pHG)-pHG;
       let midX=spX!=null?(x+pNW/2+spX+pNW/2)/2:x+pNW/2;
       let cx=midX-totPx/2;
-      kids.forEach((k,i)=>{
-        let kw=lws[i]*(pNW+pHG);
-        pPlace(k,cx+(kw-pNW)/2,y+pNH+pVG,new Set(vis));
-        cx+=kw;
-      });
+      kids.forEach((k,i)=>{let kw=lws[i]*(pNW+pHG);pPlace(k,cx+(kw-pNW)/2,y+pNH+pVG,new Set(vis));cx+=kw;});
     }
   }
 
-  if(mode==='full'){
-    pPlace('I6',0,0);
-  } else {
-    // Use current screen positions
-    Object.values(PEOPLE).forEach(p=>{
-      let nd=nodeEls[p.id];if(!nd||nd.style.opacity==='0')return;
-      let pos=positions[p.id];if(!pos)return;
-      printPeople[p.id]=p;
-      printNodes.push({id:p.id,x:pos.x,y:pos.y,spX:null,isSp:false});
-    });
-  }
+  if(mode==='full'){pPlace('I6',0,0);}
+  else{Object.values(PEOPLE).forEach(p=>{let nd=nodeEls[p.id];if(!nd||nd.style.opacity==='0')return;let pos=positions[p.id];if(!pos)return;printPeople[p.id]=p;printNodes.push({id:p.id,x:pos.x,y:pos.y,spX:null,isSp:false});});}
 
   if(!printNodes.length){alert('Nothing to print.');return;}
   let mnX=1e9,mnY=1e9,mxX=-1e9,mxY=-1e9;
-  printNodes.forEach(n=>{
-    if(n.spX!=null)mnX=Math.min(mnX,n.spX);
-    mnX=Math.min(mnX,n.x);mnY=Math.min(mnY,n.y);
-    let w=n.spX!=null?Math.max(n.x,n.spX)+pNW:n.x+pNW;
-    mxX=Math.max(mxX,w);mxY=Math.max(mxY,n.y+pNH);
-  });
+  printNodes.forEach(n=>{if(n.spX!=null)mnX=Math.min(mnX,n.spX);mnX=Math.min(mnX,n.x);mnY=Math.min(mnY,n.y);let w=n.spX!=null?Math.max(n.x,n.spX)+pNW:n.x+pNW;mxX=Math.max(mxX,w);mxY=Math.max(mxY,n.y+pNH);});
   let pad=40,W=mxX-mnX+pad*2,H=mxY-mnY+pad*2;
-  let ptitle=mode==='full'?'VAJU KALJI VORA FAMILY ( DHRANGADHRA )':'VAJU KALJI VORA FAMILY';
+  let ptitle='VAJU KALJI VORA FAMILY ( DHRANGADHRA )';
   let pcount=Object.keys(printPeople).length;
-
-  // Build parent map
   let parNode={};
-  printNodes.forEach(n=>{
-    if(n.isSp)return;
-    let p=printPeople[n.id];if(!p)return;
-    getChildren(n.id).filter(c=>printPeople[c]).forEach(cid=>{parNode[cid]=n;});
-  });
-
+  printNodes.forEach(n=>{if(n.isSp)return;getChildren(n.id).filter(c=>printPeople[c]).forEach(cid=>{parNode[cid]=n;});});
   let svgL=`<svg style="position:absolute;top:0;left:0;overflow:visible" width="${W}" height="${H}">`;
-  // Child connectors
-  printNodes.forEach(n=>{
-    let par=parNode[n.id];if(!par||n.isSp)return;
-    let cx=n.x-mnX+pad+pNW/2,cy=n.y-mnY+pad;
-    let pm=par.spX!=null?((par.x-mnX+pad+pNW/2)+(par.spX-mnX+pad+pNW/2))/2:par.x-mnX+pad+pNW/2;
-    let pby=par.y-mnY+pad+pNH,my=pby+(cy-pby)*0.45;
-    svgL+=`<path d="M${pm} ${pby} L${pm} ${my} L${cx} ${my} L${cx} ${cy}" fill="none" stroke="#C8B89A" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>`;
-  });
-  // Spouse connectors
-  printNodes.forEach(n=>{
-    if(n.spX==null)return;
-    let x1=n.x-mnX+pad+pNW,x2=n.spX-mnX+pad,cy=n.y-mnY+pad+pNH/2;
-    svgL+=`<line x1="${x1}" y1="${cy}" x2="${x2}" y2="${cy}" stroke="#C8B89A" stroke-width="1.2" stroke-dasharray="4 3"/>`;
-  });
+  printNodes.forEach(n=>{let par=parNode[n.id];if(!par||n.isSp)return;let cx=n.x-mnX+pad+pNW/2,cy=n.y-mnY+pad;let pm=par.spX!=null?((par.x-mnX+pad+pNW/2)+(par.spX-mnX+pad+pNW/2))/2:par.x-mnX+pad+pNW/2;let pby=par.y-mnY+pad+pNH,my=pby+(cy-pby)*0.45;svgL+=`<path d="M${pm} ${pby} L${pm} ${my} L${cx} ${my} L${cx} ${cy}" fill="none" stroke="#C8B89A" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>`;});
+  printNodes.forEach(n=>{if(n.spX==null)return;let x1=n.x-mnX+pad+pNW,x2=n.spX-mnX+pad,cy=n.y-mnY+pad+pNH/2;svgL+=`<line x1="${x1}" y1="${cy}" x2="${x2}" y2="${cy}" stroke="#C8B89A" stroke-width="1.2" stroke-dasharray="4 3"/>`;});
   svgL+='</svg>';
-
   let pillsH='';
-  printNodes.forEach(n=>{
-    let p=printPeople[n.id];if(!p)return;
-    let nx=n.x-mnX+pad,ny=n.y-mnY+pad;
-    let dead=isDead(p)?' dead':'';
-    let sub=p.born?(isDead(p)&&p.died&&p.died!=='†'?p.born+'–'+p.died:p.born):'';
-    if(p.city&&!sub)sub=p.city;else if(p.city&&sub)sub+=' | '+p.city;
-    pillsH+=`<div style="position:absolute;left:${nx}px;top:${ny}px;width:${pNW}px"><div class="np ${p.sex}${dead}" style="width:${pNW}px;min-height:${pNH}px"><span class="nn">${p.name}</span>${sub?`<div class="nc">${sub}</div>`:''}</div></div>`;
-  });
-
+  printNodes.forEach(n=>{let p=printPeople[n.id];if(!p)return;let nx=n.x-mnX+pad,ny=n.y-mnY+pad;let dead=isDead(p)?' dead':'';let sub=p.born?(isDead(p)&&p.died&&p.died!=='†'?p.born+'–'+p.died:p.born):'';if(p.city&&!sub)sub=p.city;else if(p.city&&sub)sub+=' | '+p.city;pillsH+=`<div style="position:absolute;left:${nx}px;top:${ny}px;width:${pNW}px"><div class="np ${p.sex}${dead}" style="width:${pNW}px;min-height:${pNH}px"><span class="nn">${p.name}</span>${sub?`<div class="nc">${sub}</div>`:''}</div></div>`;});
   let pw=window.open('','_blank');
-  pw.document.write(`<!DOCTYPE html><html><head><meta charset="UTF-8"><title>${ptitle}</title>
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
-<style>*{box-sizing:border-box;margin:0;padding:0}body{font-family:'DM Sans',Arial,sans-serif;background:#FAF9F5;padding:14px}
-.hdr{text-align:center;margin-bottom:14px;padding-bottom:10px;border-bottom:2px solid #C8A96A}
-.htit{font-family:'Playfair Display',serif;font-size:20px;font-weight:700;color:#1C1B19;margin-bottom:3px}
-.hsub{font-size:10px;color:#8A8880}
-.tree{position:relative}
-.np{border-radius:7px;border:1.5px solid;text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:4px 5px;line-height:1.3}
-.np.M{background:#E3EEF8;border-color:#1A5FAD}.np.F{background:#F5E3EE;border-color:#A03365}.np.O{background:#F0EEE8;border-color:#7A7870}
-.nn{font-weight:600;word-break:break-word;font-size:7.5px;color:#0B3F74}.np.F .nn{color:#6E1F44}.np.dead .nn{color:#C0392B!important}
-.nc{font-size:6.5px;color:#8A8880;margin-top:1px}
-.btns{text-align:center;margin-bottom:12px}
-@page{size:A1 landscape;margin:8mm}@media print{.btns{display:none}body{padding:0;background:#fff}}</style></head><body>`);
+  pw.document.write(`<!DOCTYPE html><html><head><meta charset="UTF-8"><title>${ptitle}</title><link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Playfair+Display:wght@700&display=swap" rel="stylesheet"><style>*{box-sizing:border-box;margin:0;padding:0}body{font-family:'DM Sans',Arial,sans-serif;background:#FAF9F5;padding:14px}.hdr{text-align:center;margin-bottom:14px;padding-bottom:10px;border-bottom:2px solid #C8A96A}.htit{font-family:'Playfair Display',serif;font-size:20px;font-weight:700;color:#1C1B19;margin-bottom:3px}.hsub{font-size:10px;color:#8A8880}.tree{position:relative}.np{border-radius:7px;border:1.5px solid;text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:4px 5px;line-height:1.3}.np.M{background:#E3EEF8;border-color:#1A5FAD}.np.F{background:#F5E3EE;border-color:#A03365}.np.O{background:#F0EEE8;border-color:#7A7870}.nn{font-weight:600;word-break:break-word;font-size:7.5px;color:#0B3F74}.np.F .nn{color:#6E1F44}.np.dead .nn{color:#C0392B!important}.nc{font-size:6.5px;color:#8A8880;margin-top:1px}.btns{text-align:center;margin-bottom:12px}@page{size:A1 landscape;margin:8mm}@media print{.btns{display:none}body{padding:0;background:#fff}}</style></head><body>`);
   pw.document.write(`<div class="hdr"><div class="htit">${ptitle}</div><div class="hsub">Shree Bahuchar Matay Namah &nbsp;•&nbsp; ${pcount} members &nbsp;•&nbsp; ${new Date().toLocaleDateString('en-IN')}</div></div>`);
   pw.document.write(`<div class="btns"><button onclick="window.print()" style="background:#1C1B19;color:#fff;border:none;border-radius:8px;padding:10px 24px;font-size:14px;cursor:pointer;margin-right:8px">🖨 Save as PDF / Print</button><button onclick="window.close()" style="background:#f0eeea;border:none;border-radius:8px;padding:10px 24px;font-size:14px;cursor:pointer">Close</button><p style="margin-top:6px;font-size:10px;color:#888">Destination = <b>Save as PDF</b> &nbsp;|&nbsp; Paper = <b>A1 Landscape</b> &nbsp;|&nbsp; Scale = <b>Fit to page</b></p></div>`);
   pw.document.write(`<div class="tree" style="width:${W}px;height:${H}px;position:relative">${svgL}${pillsH}</div></body></html>`);
@@ -809,7 +778,7 @@ function doPrint(mode){
 updateStats();
 render();
 setTimeout(()=>{
-  let r=cw.getBoundingClientRect();
+  let r=cwEl.getBoundingClientRect();
   let pos=positions['I6'];
   if(pos){tx=r.width/2-pos.x*0.85-NW*0.85/2;ty=30;sc=0.85;}
   applyT();
