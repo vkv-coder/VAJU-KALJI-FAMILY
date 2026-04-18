@@ -245,14 +245,27 @@ function getTrail(id){
   while(cur&&!seen.has(cur)){seen.add(cur);t.push(cur);var pp=PM[cur];if(!pp||!pp.length)break;cur=pp[0];}
   return t;
 }
+// Fixed ancestor chain above Kalyanji (I6) — Jutha→Punja→Jiva→Kana→Thana→RATANSHI
+var FIXED_ANCESTORS=['Kalyanji','Jutha','Punja','Jiva','Kana','Thana','RATANSHI'];
 function showTrail(id){
   var t=getTrail(id),el=document.getElementById('tr');
   if(!t.length){el.style.display='none';return;}
-  el.innerHTML=t.map(function(tid,i){
+  // Build HTML for ancestors in data (Vijay › Kantilal › Vrajlal › Kalyanji)
+  var html=t.map(function(tid,i){
     var p=P[tid];if(!p)return'';
     return'<span class="ti" style="color:'+(p.deceased?'#ffaaaa':'rgba(255,255,255,0.95)')+';font-weight:'+(i===0?600:400)+'" onclick="closeP();centreOn(\''+tid+'\')">'+p.name+'</span>'+(i<t.length-1?'<span class="ts">&#10230;</span>':'');
   }).join('');
+  // If trail ends at Kalyanji (ROOT), append fixed ancestor chain
+  if(t[t.length-1]===ROOT){
+    var extra=['Jutha','Punja','Jiva','Kana','Thana','RATANSHI'];
+    extra.forEach(function(nm){
+      html+='<span class="ts">&#10230;</span><span style="color:#ffaaaa;font-weight:400">'+nm+'</span>';
+    });
+  }
+  el.innerHTML=html;
   el.style.display='block';
+  // Scroll to end so RATANSHI is visible
+  setTimeout(function(){el.scrollLeft=el.scrollWidth;},50);
 }
 
 var DM={};
@@ -697,7 +710,7 @@ function jumpTo(id){
     showTrail(id);
   },250);
 }
-function clrS(){var el=document.getElementById('si');if(el)el.value='';document.getElementById('sc').style.display='none';_siLast='';initView();}
+function clrS(){var el=document.getElementById('si');if(el)el.value='';document.getElementById('sc').style.display='none';_siLast='';showAll();}
 
 // ── HELPERS ──
 function showBB(){document.getElementById('bB').style.display='block';document.getElementById('bA').style.display='none';document.getElementById('bL').style.display='none';}
@@ -886,7 +899,7 @@ function initView(){
     var kids=(p.children||[]).filter(function(c){return P[c]&&P[c].depth>=8;});
     var xb=document.createElement('div');xb.className='xb'+(kids.length?'':' h');xb.style.cssText='width:'+(mob?22:18)+'px;height:'+(mob?22:18)+'px;font-size:'+(mob?13:11)+'px';
     xb.textContent=kids.length?(coll.has(n.id)?'+':'−'):'';
-    if(kids.length)xb.onclick=function(e){e.stopPropagation();if(coll.has(n.id))coll.delete(n.id);else coll.add(n.id);initView();};
+    if(kids.length)xb.onclick=function(e){e.stopPropagation();if(coll.has(n.id))coll.delete(n.id);else coll.add(n.id);showAll();};
     div.appendChild(xb);mv.appendChild(div);
   });
 
@@ -946,11 +959,11 @@ var ptitle=printMode==='full'?'VAJU KALJI VORA FAMILY ( DHRANGADHRA )':'VAJU KAL
 }
 
 // Override button handlers
-document.getElementById('bA').onclick=function(){initView();};
+document.getElementById('bA').onclick=function(){showAll();};
 document.getElementById('bL').onclick=function(){showLiveMode();};
-document.getElementById('bB').onclick=function(){initView();};
+document.getElementById('bB').onclick=function(){showAll();};
 
-initView();
+showAll();
 
 </script>
 </body>
