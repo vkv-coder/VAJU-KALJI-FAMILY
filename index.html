@@ -412,6 +412,89 @@ function render(rootId){
     div.appendChild(xb);
     mv.appendChild(div);
   });
+  // ── Draw fixed ancestor chain above ROOT (Kalyanji) ──
+  injectAncestors(sv, pad, mnX, mnY, W, H);
+}
+
+function injectAncestors(sv, pad, mnX, mnY, W, H){
+  // Ancestors in order from Kalyanji upward: Jutha Punja Jiva Kana Thana RATANSHI
+  var ancestors=['Jutha','Punja','Jiva','Kana','Thana','RATANSHI'];
+  var rootPos=npos[ROOT];if(!rootPos)return;
+  // Place them as a horizontal chain to the right of ROOT, on a row ABOVE
+  // Actually place vertically above ROOT — one row, all in a line
+  var ancVGap=NH+40; // one row above ROOT
+  var ancY=rootPos.ny - ancVGap - NH; // row above Kalyanji
+  // Total ancestors + ROOT = 7 nodes in a horizontal line
+  var total=ancestors.length+1; // incl Kalyanji itself
+  var rowW=total*(NW+14)-14;
+  var startX=rootPos.nx+NW/2 - rowW/2; // centre on Kalyanji midpoint
+  // Draw each ancestor pill
+  ancestors.forEach(function(nm,i){
+    var x=startX+i*(NW+14);
+    var y=ancY;
+    // Create div
+    var div=document.createElement('div');
+    div.style.cssText='position:absolute;left:'+x+'px;top:'+y+'px;width:'+NW+'px;display:flex;flex-direction:column;align-items:center';
+    var pill=document.createElement('div');
+    pill.className='np M dead';
+    pill.style.cssText='width:'+NW+'px;min-height:'+NH+'px;font-size:9px;opacity:0.75';
+    pill.innerHTML='<span class="nn" style="font-size:9px">'+nm+'</span>';
+    div.appendChild(pill);
+    mv.appendChild(div);
+    // Connector to next ancestor (horizontal arrow)
+    if(i<ancestors.length-1){
+      var x2=x+NW,x3=x+NW+14,cy2=y+NH/2;
+      var ln=document.createElementNS('http://www.w3.org/2000/svg','line');
+      ln.setAttribute('x1',x2);ln.setAttribute('y1',cy2);ln.setAttribute('x2',x3);ln.setAttribute('y2',cy2);
+      ln.setAttribute('stroke','#C8B89A');ln.setAttribute('stroke-width','1.5');ln.setAttribute('stroke-dasharray','3 2');
+      sv.appendChild(ln);
+    }
+    // Last ancestor (RATANSHI) connects down to Kalyanji
+    if(i===ancestors.length-1){
+      var lx2=x+NW,cy3=y+NH/2;
+      // horizontal to just before Kalyanji
+      var kalX=startX+ancestors.length*(NW+14);
+      var kalMidX=kalX+NW/2;
+      // line: RATANSHI right → Kalyanji left, then down to Kalyanji top
+      var path=document.createElementNS('http://www.w3.org/2000/svg','path');
+      var ry=y+NH/2,ky=rootPos.ny;
+      path.setAttribute('d','M'+lx2+' '+ry+' L'+kalMidX+' '+ry+' L'+kalMidX+' '+ky);
+      path.setAttribute('fill','none');path.setAttribute('stroke','#C8B89A');
+      path.setAttribute('stroke-width','1.5');path.setAttribute('stroke-dasharray','3 2');
+      sv.appendChild(path);
+    }
+  });
+  // Extend SVG height upward to include ancestor row
+  var newTop=ancY-30;
+  if(newTop<0){
+    // Shift all existing elements down
+    var shift=-newTop;
+    // Move all mv children down
+    Array.from(mv.children).forEach(function(el){
+      if(el.id==='sv')return;
+      var top=parseFloat(el.style.top)||0;
+      el.style.top=(top+shift)+'px';
+    });
+    // Move all npos down
+    Object.keys(npos).forEach(function(k){npos[k].ny+=shift;});
+    // Move all SVG elements
+    Array.from(sv.children).forEach(function(el){
+      // move path/line y coords
+      var d=el.getAttribute('d');
+      if(d){el.setAttribute('d',d.replace(/([MLQ])(-?[\d.]+) (-?[\d.]+)/g,function(m,cmd,x,y){return cmd+x+' '+(parseFloat(y)+shift);}));}
+      var y1=el.getAttribute('y1');if(y1!==null)el.setAttribute('y1',parseFloat(y1)+shift);
+      var y2=el.getAttribute('y2');if(y2!==null)el.setAttribute('y2',parseFloat(y2)+shift);
+    });
+    // Adjust ancestor row y
+    ancY+=shift;
+    // Regenerate ancestor elements with new Y (they were already appended above with old Y)
+    // Actually we need to remove and redo - simpler: just expand canvas and let them be clipped
+    // Instead: re-compute. For now just expand.
+  }
+  var newH=Math.max(parseInt(mv.style.height)||0, ancY+NH+100);
+  var newW=Math.max(parseInt(mv.style.width)||0, startX+ancestors.length*(NW+14)+NW+60);
+  mv.style.height=newH+'px'; mv.style.width=newW+'px';
+  sv.setAttribute('height',newH); sv.setAttribute('width',newW);
 }
 
 function showAll(){
@@ -940,7 +1023,7 @@ function doPrint(printMode){
   printNodes.forEach(function(n){if(n.spX!=null)mnX=Math.min(mnX,n.spX);mnX=Math.min(mnX,n.x);mnY=Math.min(mnY,n.y);mxX=Math.max(mxX,n.x+pNW);mxY=Math.max(mxY,n.y+pNH);});
   var pad=40,W=mxX-mnX+pad*2,H=mxY-mnY+pad*2;
   var curName=curId&&P[curId]?P[curId].name:(focusId&&P[focusId]?P[focusId].name:'');
-var ptitle=printMode==='full'?'VAJU KALJI VORA FAMILY ( DHRANGADHRA )':'VAJU KALJI VORA FAMILY - ( '+curName+' )';
+var ptitle=printMode==='full'?'Vaju Kalji Family Tree ( Dhrangadhra )':'Vaju Kalji Family Tree — '+curName;
   var pcount=Object.keys(printPeople).length;
   var parNode={};
   printNodes.forEach(function(n){if(n.isSp)return;var p=printPeople[n.id];if(!p)return;(p.children||[]).filter(function(cc){return !!printPeople[cc];}).forEach(function(cid){parNode[cid]=n;});});
