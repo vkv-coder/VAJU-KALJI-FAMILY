@@ -158,7 +158,7 @@ var admin=false,pending=null,curId=null;
 var mode='all';var focusId=null; // 'all','live','focus','search'
 var focusId=null;
 var mob=window.innerWidth<=640;
-var NW=mob?140:124,NH=mob?62:54,HG=mob?32:28,VG=mob?90:78,NFS=mob?13:13;
+var NW=mob?110:96,NH=mob?52:46,HG=mob?18:14,VG=mob?72:64,NFS=mob?12:12;
 var tx=0,ty=0,sc=1,drag=false,sx=0,sy=0,stx=0,sty=0,moved=false;
 var pinch=false,pd=0,psc=1,ptx=0,pty=0,pmx=0,pmy=0;
 var npos={},coll=new Set();
@@ -513,10 +513,11 @@ function showAll(){
   document.getElementById('bL').style.display='block';
   render(ROOT);
   setTimeout(function(){
-    sc=mob?0.35:0.28;
-    var rp=npos[ROOT],ww=cw.clientWidth;
-    tx=rp?Math.round(ww/2-(rp.nx+NW/2)*sc):50;
-    ty=40;T();
+    var W=parseInt(mv.style.width)||800,H=parseInt(mv.style.height)||600;
+    var ww=cw.clientWidth,wh=cw.clientHeight;
+    sc=Math.min(0.9,(ww-40)/W,(wh-80)/H);
+    sc=Math.max(0.15,sc);
+    tx=(ww-W*sc)/2; ty=30; T();
   },280);
 }
 
