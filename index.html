@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
 <title>Vaju Kalji Vora Family Tree</title>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=DM+Sans:wght@400;500;600&display=swap');
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
@@ -148,12 +149,12 @@ header{background:linear-gradient(135deg,#1a3a5c 0%,#2c5f8a 100%);padding:10px 1
   </div>
 </div>
 <script>
-const FD={"individuals":{"I6":{"id":"I6","name":"Kalyanji Vora","sex":"M","city":"Dhrangadhra","nick":"","deceased":true,"birth":"","death":"","note":"","depth":0,"children":["I4"],"spouses":[],"parents":[],"fams":["F4"],"famc":[]},"I4":{"id":"I4","name":"Vrajlal Vora","sex":"M","city":"","nick":"","deceased":true,"birth":"","death":"","note":"","depth":1,"children":["I2","I7","I9"],"spouses":["I5"],"parents":["I6"],"fams":["F3"],"famc":["F4"]},"I5":{"id":"I5","name":"Jivi Vora","sex":"F","city":"","nick":"","deceased":true,"birth":"","death":"","note":"","depth":1,"children":["I2","I7","I9"],"spouses":["I4"],"parents":[],"fams":["F3"],"famc":[]},"I2":{"id":"I2","name":"Kantilal Vora","sex":"M","city":"","nick":"","deceased":true,"birth":"1929","death":"2006","note":"","depth":2,"children":["I1","I8"],"spouses":["I3"],"parents":["I4","I5"],"fams":["F2"],"famc":["F3"]},"I3":{"id":"I3","name":"Sushila Shah","sex":"F","city":"","nick":"","deceased":false,"birth":"1931","death":"","note":"","depth":2,"children":["I1","I8"],"spouses":["I2"],"parents":[],"fams":["F2"],"famc":[]},"I7":{"id":"I7","name":"Ramniklal Vora","sex":"M","city":"","nick":"","deceased":true,"birth":"","death":"","note":"","depth":2,"children":["I15","I16","I17"],"spouses":["I10"],"parents":["I4","I5"],"fams":["F5"],"famc":["F3"]},"I10":{"id":"I10","name":"Jaya Kothari","sex":"F","city":"","nick":"","deceased":true,"birth":"","death":"","note":"","depth":2,"children":["I15","I16","I17"],"spouses":["I7"],"parents":[],"fams":["F5"],"famc":[]},"I9":{"id":"I9","name":"Mukund Vora","sex":"M","city":"","nick":"","deceased":true,"birth":"1935","death":"2018","note":"","depth":2,"children":["I21","I22","I23"],"spouses":["I11"],"parents":["I4","I5"],"fams":["F7"],"famc":["F3"]},"I11":{"id":"I11","name":"Hemlata Shah","sex":"F","city":"","nick":"","deceased":true,"birth":"1946","death":"2000","note":"","depth":2,"children":["I21","I22","I23"],"spouses":["I9"],"parents":[],"fams":["F7"],"famc":[]},"I1":{"id":"I1","name":"Vijay Vora","sex":"M","city":"Baroda","nick":"","deceased":false,"birth":"1959","death":"","note":"","depth":3,"children":["I12","I43"],"spouses":["I13"],"parents":["I2","I3"],"fams":["F1"],"famc":["F2"]},"I13":{"id":"I13","name":"Usha Shah","sex":"F","city":"","nick":"","deceased":true,"birth":"1956","death":"2021","note":"","depth":3,"children":["I12","I43"],"spouses":["I1"],"parents":[],"fams":["F1"],"famc":[]},"I8":{"id":"I8","name":"Ila Naishadh Vora","sex":"F","city":"Rajkot","nick":"","deceased":false,"birth":"1957","death":"","note":"","depth":3,"children":["I32","I41"],"spouses":["I31"],"parents":["I2","I3"],"fams":["F6"],"famc":["F2"]},"I31":{"id":"I31","name":"Naishadh Doshi","sex":"M","city":"Rajkot","nick":"","deceased":false,"birth":"1954","death":"","note":"","depth":3,"children":["I32","I41"],"spouses":["I8"],"parents":[],"fams":["F6"],"famc":[]},"I15":{"id":"I15","name":"Deepak Vora","sex":"M","city":"","nick":"","deceased":true,"birth":"1952","death":"2015","note":"","depth":3,"children":["I40"],"spouses":["I39"],"parents":["I7","I10"],"fams":["F9"],"famc":["F5"]},"I39":{"id":"I39","name":"Nita Nanavati","sex":"F","city":"USA","nick":"","deceased":false,"birth":"1955","death":"","note":"","depth":3,"children":["I40"],"spouses":["I15"],"parents":[],"fams":["F9"],"famc":[]},"I16":{"id":"I16","name":"Jyoti Vora","sex":"F","city":"Mumbai","nick":"","deceased":false,"birth":"1959","death":"","note":"","depth":3,"children":["I37","I38"],"spouses":["I36"],"parents":["I7","I10"],"fams":["F10"],"famc":["F5"]},"I36":{"id":"I36","name":"Yogesh Shah","sex":"M","city":"Mumbai","nick":"","deceased":false,"birth":"1956","death":"","note":"","depth":3,"children":["I37","I38"],"spouses":["I16"],"parents":[],"fams":["F10"],"famc":[]},"I17":{"id":"I17","name":"Pradip Vora","sex":"M","city":"Mumbai","nick":"","deceased":false,"birth":"1960","death":"","note":"","depth":3,"children":["I19","I20"],"spouses":["I18"],"parents":["I7","I10"],"fams":["F11"],"famc":["F5"]},"I18":{"id":"I18","name":"Rupal Nanavati","sex":"F","city":"Mumbai","nick":"","deceased":false,"birth":"1963","death":"","note":"","depth":3,"children":["I19","I20"],"spouses":["I17"],"parents":[],"fams":["F11"],"famc":[]},"I21":{"id":"I21","name":"Amit Vora","sex":"M","city":"Mumbai","nick":"","deceased":false,"birth":"1964","death":"","note":"","depth":3,"children":["I25"],"spouses":["I24"],"parents":["I9","I11"],"fams":["F12"],"famc":["F7"]},"I24":{"id":"I24","name":"Medha Joshi","sex":"F","city":"","nick":"","deceased":false,"birth":"1969","death":"","note":"","depth":3,"children":["I25"],"spouses":["I21"],"parents":[],"fams":["F12"],"famc":[]},"I22":{"id":"I22","name":"Hemant Vora","sex":"M","city":"Mumbai","nick":"","deceased":false,"birth":"1967","death":"","note":"","depth":3,"children":["I27","I28"],"spouses":["I26"],"parents":["I9","I11"],"fams":["F13"],"famc":["F7"]},"I26":{"id":"I26","name":"Anjali Shah","sex":"F","city":"","nick":"","deceased":false,"birth":"1971","death":"","note":"","depth":3,"children":["I27","I28"],"spouses":["I22"],"parents":[],"fams":["F13"],"famc":[]},"I23":{"id":"I23","name":"Hitendra Vora","sex":"M","city":"Mumbai","nick":"","deceased":false,"birth":"1971","death":"","note":"","depth":3,"children":["I30"],"spouses":["I29"],"parents":["I9","I11"],"fams":["F14"],"famc":["F7"]},"I29":{"id":"I29","name":"Nisha Mehta","sex":"F","city":"","nick":"","deceased":false,"birth":"1972","death":"","note":"","depth":3,"children":["I30"],"spouses":["I23"],"parents":[],"fams":["F14"],"famc":[]},"I12":{"id":"I12","name":"Pranav Vora","sex":"M","city":"Melbourne","nick":"","deceased":false,"birth":"1990","death":"","note":"","depth":4,"children":[],"spouses":["I14"],"parents":["I1","I13"],"fams":["F8"],"famc":["F1"]},"I14":{"id":"I14","name":"Mitali Shah","sex":"F","city":"Melbourne","nick":"","deceased":false,"birth":"1992","death":"","note":"","depth":4,"children":[],"spouses":["I12"],"parents":[],"fams":["F8"],"famc":[]},"I43":{"id":"I43","name":"Aditya Vora","sex":"M","city":"Vadodara","nick":"","deceased":false,"birth":"1994","death":"","note":"","depth":4,"children":[],"spouses":[],"parents":["I1","I13"],"fams":[],"famc":["F1"]},"I32":{"id":"I32","name":"Bhaumik Doshi","sex":"M","city":"Rajkot","nick":"","deceased":false,"birth":"1983","death":"","note":"","depth":4,"children":["I34","I35"],"spouses":["I33"],"parents":["I31","I8"],"fams":["F15"],"famc":["F6"]},"I33":{"id":"I33","name":"Priyanka Grower","sex":"F","city":"","nick":"","deceased":false,"birth":"1982","death":"","note":"","depth":4,"children":["I34","I35"],"spouses":["I32"],"parents":[],"fams":["F15"],"famc":[]},"I41":{"id":"I41","name":"Nimit Doshi","sex":"M","city":"Rajkot","nick":"","deceased":false,"birth":"1986","death":"","note":"","depth":4,"children":[],"spouses":["I42"],"parents":["I31","I8"],"fams":["F18"],"famc":["F6"]},"I42":{"id":"I42","name":"Nikita Ravrani","sex":"F","city":"","nick":"","deceased":false,"birth":"1986","death":"","note":"","depth":4,"children":[],"spouses":["I41"],"parents":[],"fams":["F18"],"famc":[]},"I40":{"id":"I40","name":"Binita Vora","sex":"F","city":"USA","nick":"","deceased":false,"birth":"1979","death":"","note":"","depth":4,"children":[],"spouses":[],"parents":["I15","I39"],"fams":[],"famc":["F9"]},"I37":{"id":"I37","name":"Akshat Shah","sex":"M","city":"","nick":"","deceased":false,"birth":"1986","death":"","note":"","depth":4,"children":["I45"],"spouses":["I44"],"parents":["I36","I16"],"fams":["F16"],"famc":["F10"]},"I44":{"id":"I44","name":"Priyanka Likhite","sex":"F","city":"","nick":"","deceased":false,"birth":"1985","death":"","note":"","depth":4,"children":["I45"],"spouses":["I37"],"parents":[],"fams":["F16"],"famc":[]},"I38":{"id":"I38","name":"Mihir Shah","sex":"M","city":"","nick":"","deceased":false,"birth":"1990","death":"","note":"","depth":4,"children":[],"spouses":["I46"],"parents":["I36","I16"],"fams":["F17"],"famc":["F10"]},"I46":{"id":"I46","name":"Khushboo Jasani","sex":"F","city":"","nick":"","deceased":false,"birth":"1994","death":"","note":"","depth":4,"children":[],"spouses":["I38"],"parents":[],"fams":["F17"],"famc":[]},"I19":{"id":"I19","name":"Jay Vora","sex":"M","city":"","nick":"","deceased":false,"birth":"1993","death":"","note":"","depth":4,"children":[],"spouses":[],"parents":["I17","I18"],"fams":[],"famc":["F11"]},"I20":{"id":"I20","name":"Noopur Vora","sex":"F","city":"","nick":"","deceased":false,"birth":"1991","death":"","note":"","depth":4,"children":[],"spouses":[],"parents":["I17","I18"],"fams":[],"famc":["F11"]},"I25":{"id":"I25","name":"Manasvi Vora","sex":"F","city":"","nick":"","deceased":false,"birth":"2003","death":"","note":"","depth":4,"children":[],"spouses":[],"parents":["I21","I24"],"fams":[],"famc":["F12"]},"I27":{"id":"I27","name":"Vidhi Vora","sex":"F","city":"","nick":"","deceased":false,"birth":"1996","death":"","note":"","depth":4,"children":[],"spouses":[],"parents":["I22","I26"],"fams":[],"famc":["F13"]},"I28":{"id":"I28","name":"Hiya Vora","sex":"F","city":"","nick":"","deceased":false,"birth":"2003","death":"","note":"","depth":4,"children":[],"spouses":[],"parents":["I22","I26"],"fams":[],"famc":["F13"]},"I30":{"id":"I30","name":"Halak Vora","sex":"F","city":"","nick":"","deceased":false,"birth":"2001","death":"","note":"","depth":4,"children":[],"spouses":[],"parents":["I23","I29"],"fams":[],"famc":["F14"]},"I34":{"id":"I34","name":"AArush Doshi","sex":"M","city":"","nick":"","deceased":false,"birth":"2010","death":"","note":"","depth":5,"children":[],"spouses":[],"parents":["I32","I33"],"fams":[],"famc":["F15"]},"I35":{"id":"I35","name":"Vritika Doshi","sex":"F","city":"","nick":"","deceased":false,"birth":"2017","death":"","note":"","depth":5,"children":[],"spouses":[],"parents":["I32","I33"],"fams":[],"famc":["F15"]},"I45":{"id":"I45","name":"Miraya Shah","sex":"F","city":"","nick":"","deceased":false,"birth":"2018","death":"","note":"","depth":5,"children":[],"spouses":[],"parents":["I37","I44"],"fams":[],"famc":["F16"]}},"families":{"F4":{"husb":"I6","wife":null,"children":["I4"]},"F3":{"husb":"I4","wife":"I5","children":["I2","I7","I9"]},"F2":{"husb":"I2","wife":"I3","children":["I1","I8"]},"F5":{"husb":"I7","wife":"I10","children":["I15","I16","I17"]},"F7":{"husb":"I9","wife":"I11","children":["I21","I22","I23"]},"F1":{"husb":"I1","wife":"I13","children":["I12","I43"]},"F6":{"husb":"I31","wife":"I8","children":["I32","I41"]},"F9":{"husb":"I15","wife":"I39","children":["I40"]},"F10":{"husb":"I36","wife":"I16","children":["I37","I38"]},"F11":{"husb":"I17","wife":"I18","children":["I19","I20"]},"F12":{"husb":"I21","wife":"I24","children":["I25"]},"F13":{"husb":"I22","wife":"I26","children":["I27","I28"]},"F14":{"husb":"I23","wife":"I29","children":["I30"]},"F8":{"husb":"I12","wife":"I14","children":[]},"F15":{"husb":"I32","wife":"I33","children":["I34","I35"]},"F18":{"husb":"I41","wife":"I42","children":[]},"F16":{"husb":"I37","wife":"I44","children":["I45"]},"F17":{"husb":"I38","wife":"I46","children":[]}}};
-const PM={"I4":["I6"],"I2":["I4","I5"],"I7":["I4","I5"],"I9":["I4","I5"],"I1":["I2","I3"],"I8":["I2","I3"],"I15":["I7","I10"],"I16":["I7","I10"],"I17":["I7","I10"],"I21":["I9","I11"],"I22":["I9","I11"],"I23":["I9","I11"],"I12":["I1","I13"],"I43":["I1","I13"],"I32":["I31","I8"],"I41":["I31","I8"],"I40":["I15","I39"],"I37":["I36","I16"],"I38":["I36","I16"],"I19":["I17","I18"],"I20":["I17","I18"],"I25":["I21","I24"],"I27":["I22","I26"],"I28":["I22","I26"],"I30":["I23","I29"],"I34":["I32","I33"],"I35":["I32","I33"],"I45":["I37","I44"],"I6":[]};
+const sbTree=supabase.createClient('https://jqqnnkzozjskziaizajg.supabase.co','eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImpxcW5ua3pvempza3ppYWl6YWpnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzI5Mjk1ODAsImV4cCI6MjA4ODUwNTU4MH0.sEYeWnm0dvuw8bLSVnQhqmgV8LB-pELjpuVIa3Us1Gg');
+const TREE_SLUG='vaju-kalji-family';
+let P={},PM={},TREE_FAMILIES={};
 const GCOUNTS={"0":1,"1":2,"2":3,"3":10,"4":13,"5":3};
 
-const P=FD.individuals;
-const PIN='vkv2';
+let enteredPin='';
 var admin=false,pending=null,curId=null;
 var mode='all';var focusId=null; // 'all','live','focus','search'
 var focusId=null;
@@ -655,12 +656,26 @@ function needPin(fn){
   document.getElementById('pe').textContent='';
   setTimeout(function(){document.getElementById('pi').focus();},100);
 }
-function doPin(){
-  if(document.getElementById('pi').value===PIN){
-    admin=true;
+async function doPin(){
+  var val=document.getElementById('pi').value;
+  document.getElementById('pe').textContent='Checking...';
+  var ok=false;
+  try{
+    var res=await sbTree.rpc('ft_verify_pin',{p_slug:TREE_SLUG,p_pin:val});
+    ok=!!res.data;
+  }catch(e){ok=false;}
+  if(ok){
+    admin=true;enteredPin=val;
     document.getElementById('pov').classList.remove('open');
+    document.getElementById('pe').textContent='';
     if(pending){var fn=pending;pending=null;window[fn]();}
   }else{document.getElementById('pe').textContent='Wrong PIN';}
+}
+async function persistTree(){
+  try{
+    var res=await sbTree.rpc('ft_save',{p_slug:TREE_SLUG,p_pin:enteredPin,p_data:{individuals:P,families:TREE_FAMILIES,PM:PM}});
+    if(!res.data){alert('Could not save - please unlock again.');admin=false;}
+  }catch(e){alert('Save failed: '+e.message);}
 }
 
 function showEd(){
@@ -696,6 +711,7 @@ function saveEd(){
   p.death=document.getElementById('edd').value.trim();
   p.city=document.getElementById('ec').value.trim();
   p.note=document.getElementById('enote').value.trim();
+  persistTree();
   closeP();render(ROOT);
   setTimeout(function(){
     showProfile(curId);
@@ -722,6 +738,7 @@ function undoEdit(){
   var p=P[lastEdit.id];if(!p)return;
   Object.assign(p,lastEdit.prev);
   lastEdit=null;
+  persistTree();
   document.getElementById('undoToast').style.display='none';
   render(ROOT);setTimeout(function(){showProfile(curId);},120);
 }
@@ -760,7 +777,7 @@ function doAdd(type){
     if(!p.parents)p.parents=[];p.parents.push(newId);
     PM[curId]=PM[curId]||[];PM[curId].push(newId);
   }
-  P[newId]=np;closeP();render(ROOT);setTimeout(function(){showProfile(newId);},150);
+  P[newId]=np;persistTree();closeP();render(ROOT);setTimeout(function(){showProfile(newId);},150);
 }
 
 function delP(){
@@ -770,6 +787,7 @@ function delP(){
   (p.spouses||[]).forEach(function(sid){var sp=P[sid];if(sp)sp.spouses=(sp.spouses||[]).filter(function(s){return s!==curId;});});
   (p.children||[]).forEach(function(cid){PM[cid]=(PM[cid]||[]).filter(function(pp){return pp!==curId;});var ch=P[cid];if(ch)ch.parents=(ch.parents||[]).filter(function(pp){return pp!==curId;});});
   delete P[curId];delete PM[curId];
+  persistTree();
   closeP();render(ROOT);
 }
 
@@ -1072,7 +1090,20 @@ document.getElementById('bA').onclick=function(){showAll();};
 document.getElementById('bL').onclick=function(){showLiveMode();};
 document.getElementById('bB').onclick=function(){showAll();};
 
-showAll();
+async function bootstrap(){
+  try{
+    var res=await sbTree.rpc('ft_load',{p_slug:TREE_SLUG});
+    if(!res.data){throw new Error('no data');}
+    P=res.data.individuals||{};
+    PM=res.data.PM||{};
+    TREE_FAMILIES=res.data.families||{};
+  }catch(e){
+    document.body.innerHTML='<div style="padding:40px;text-align:center;font-family:sans-serif;">Could not load the family tree. Please try again later.</div>';
+    return;
+  }
+  showAll();
+}
+bootstrap();
 
 </script>
 </body>
